@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+a {text-decoration:none; color:#fff;}
+a:hover {text-decoration:none; color:#fff;}
+
+#wrap {width:1200px}
+
+.loginHeader {height:60px;}
+.contents {height:600px; width:400px;}
+.bin-box {height:50px;}
+#signUpBtn {background:#00B5E3;}
+#login {background:#00B5E3;}
+aside {width:400px;}
+
+.timeline-nav {height:600px; width:200px;}
+.timeline-contents {height:600px; width:800px;}
+/* 타임라인 mid */
+.timeline-content{width:800px;}
+.timeline-profile{width:400px}
