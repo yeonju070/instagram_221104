@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="d-flex justify-content-start">
-	<div class="timeline-nav">
+<div class="timeline-nav d-flex justify-content-start">
+	<div class="my-3">
 		<%-- nav instagram 로고 영역 --%>
 		<div class="d-flex justify-content-start align-items-center h-25 ml-4">
 			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png?20160616034027" width="100px" alt="인스타 로고">
 		</div>
+		
 		<%-- nav menu 영역 --%>
 		<div class="menu d-flex justify-content-start align-items-start h-50">
 			<div>
@@ -23,12 +24,35 @@
 				</button>
 			</div>
 		</div>
+		
 		<%-- nav 더보기 영역 --%>
 		<div class="detail d-flex align-items-end ml-3 h-25">
 			<button class="btn bg-white detailBtn" data-toggle="modal" data-target="#modal">
 				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/330px-Hamburger_icon.svg.png" alt="더보기" width="30px">
 				<span class="ml-3">더보기</span>
 			</button>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal">
+	<%-- modal-dialog-centered: 모달창을 수직 가운데 정렬, modal-sm: 작은 모달창 --%>
+	<div class="modal-dialog modal-dialog-centered modal-sm">
+		<div class="modal-content">
+      		<%-- Modal 창 안에 내용 채워넣기 --%>
+      		<div class="text-center">
+      			<div class="py-3 border-bottom">
+      				<button id="profileDetailBtn" class="btn bg-white btn-block">설정</button>
+      			</div>
+      			<div class="py-3 border-bottom">
+      				<button id="signOutBtn" class="btn bg-white btn-block">로그아웃</button>
+      			</div>
+      			<div class="py-3">
+      				<%-- data-dismiss="modal" 모달창 닫힘 --%>
+      				<button data-dismiss="modal" class="btn bg-white btn-block">취소</button>
+      			</div>
+      		</div>
 		</div>
 	</div>
 </div>

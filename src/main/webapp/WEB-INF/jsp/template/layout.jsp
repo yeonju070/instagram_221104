@@ -17,10 +17,10 @@
 </head>
 <body>
 	<div id="wrap">
-		<div class="d-flex justify-content-between align-items-center">
-			<aside>
-				<jsp:include page="../include/loginAside.jsp" />
-			</aside>
+		<div class="d-flex justify-content-between">
+			<nav>
+				<jsp:include page="../include/nav.jsp" />
+			</nav>
 			<section>
 				<jsp:include page="../${viewName}.jsp" />
 			</section>

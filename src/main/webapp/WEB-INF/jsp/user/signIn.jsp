@@ -27,7 +27,7 @@
 			</div>
 			<div class="d-flex">
 				<a id="signUpBtn" class="btn w-50 mt-3 mb-5" href="/user/sign_up_view">회원가입</a>
-				<button type="submit" id="login" class="btn btn-info w-50 mt-3 ml-3 mb-5">로그인</button>
+				<button type="submit" id="login" class="btn w-50 mt-3 ml-3 mb-5 text-white">로그인</button>
 			</div>
 		</form>
 	</div>
