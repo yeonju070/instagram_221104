@@ -23,55 +23,42 @@ public class UserRestController {
 	private UserBO userBO;
 	
 	/*
-	 * 회원가입
-	 * email
-	 * name
-	 * loginName
-	 * password
-	 */
-	@RequestMapping("sign_up")
-	public Map<String, Object> signUp(
-			@RequestParam("email") String email,
-			@RequestParam("name") String name,
-			@RequestParam("loginId") String loginId,
-			@RequestParam("password") String password) {
-		
-		String encryptPassword = EncryptUtils.md5(password);
-		int row = userBO.addUser(email, name, loginId, encryptPassword);
-		
-		Map<String, Object> result = new HashMap<>();
-		if (row == 1) {
-			result.put("code", 100);
-		} else {
-			result.put("error", "회원 가입 실패");
-		}
-		return result;
-	}
-	
-	/*
 	 * 로그인 중복 확인
 	 */
-	@RequestMapping("is_duplicated_id")
+	@RequestMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(
 			@RequestParam("loginId") String loginId) {
-		
+
 		Map<String, Object> result = new HashMap<>();
-		
-		int existCount = userBO.existLoginId(loginId);
-		if (existCount > 0) {
-			result.put("code", 100);
+		int existRowCount = userBO.existLoginId(loginId);
+		if (existRowCount > 0) {
+			result.put("result", true);
 		} else {
-			result.put("error", "입력 실패");
+			result.put("result", false);
 		}
 
 		return result;
 	}
-	
+
 	/*
-	 * 로그인
-	 * loginId
-	 * password
+	 * 회원 가입
 	 */
+	@RequestMapping("/sign_up")
+	public Map<String, Object> signUp(@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password, @RequestParam("name") String name,
+			@RequestParam("email") String email) {
+
+		String encryptPassword = EncryptUtils.md5(password);
+		int row = userBO.addUser(loginId, encryptPassword, name, email);
+
+		Map<String, Object> result = new HashMap<>();
+		if (row == 1) {
+			result.put("result", "success");
+		} else {
+			result.put("error", "입력 실패");
+		}
+		return result;
+	}
 	
 	@RequestMapping("/sign_in")
 	public Map<String, Object> signIn(
@@ -86,14 +73,14 @@ public class UserRestController {
 		
 		if (user != null) {
 			result.put("code", 100);
+			// 로그인 처리 - 세션에 저장(로그인 상태를 유지한다)
 			HttpSession session = request.getSession();
 			session.setAttribute("userLoginId", user.getLoginId());
-			session.setAttribute("userPassword", user.getPassword());
-			session.setAttribute("userName", user.getName());
+			session.setAttribute("userName", user.getName());	
+			session.setAttribute("userId", user.getId());	
 		} else {
 			result.put("error", "입력 실패");
 		}
-		
 		return result;
 	}
 }

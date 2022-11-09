@@ -24,7 +24,7 @@
 			<aside>
 				<jsp:include page="../include/loginAside.jsp" />
 			</aside>
-			<section class="contents">
+			<section class="login-contents">
 				<jsp:include page="../${viewName}.jsp" />
 			</section>
 		</div>

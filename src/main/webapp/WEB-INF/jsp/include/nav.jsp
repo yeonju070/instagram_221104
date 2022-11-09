@@ -1,27 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="timeline-nav d-flex justify-content-start">
-	<div class="my-3">
+<div class="d-flex justify-content-start">
+	<div class="timeline-nav">
 		<%-- nav instagram 로고 영역 --%>
-		<div class="d-flex justify-content-start align-items-center h-25 ml-4">
-			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png?20160616034027" width="100px" alt="인스타 로고">
+		<div class="logo d-flex justify-content-start align-items-center ml-4">
+			<a href="/timeline/timeline_view">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png?20160616034027" width="100px" alt="인스타 로고">
+			</a>
 		</div>
 		
 		<%-- nav menu 영역 --%>
-		<div class="menu d-flex justify-content-start align-items-start h-50">
+		<div class="menu d-flex justify-content-start align-items-start">
 			<div>
-				<button class="btn homeBtn bg-white ml-3 mb-3">
-					<img src="https://cdn-icons-png.flaticon.com/512/70/70950.png" alt="포인트" width="25px">
-					<span class="ml-3">홈</span>
-				</button><br>
-				<button class="btn messageBtn bg-white ml-3 mb-3">
-					<img src="https://cdn.icon-icons.com/icons2/3237/PNG/512/chatting_logo_tool_direct_message_social_media_icon_197332.png" alt="포인트" width="25px">
-					<span class="ml-3">메시지</span>
-				</button><br>
-				<button class="btn crateBtn bg-white ml-3">
-					<img src="https://cdn-icons-png.flaticon.com/512/78/78181.png" alt="포인트" width="23px">
-					<span class="ml-3">만들기</span>
-				</button>
+				<div>
+					<a href="/timeline/timeline_view" class="btn homeBtn bg-white text-dark ml-3 mb-3">
+						<img src="https://cdn-icons-png.flaticon.com/512/70/70950.png" alt="포인트" width="25px">
+						<span class="ml-3">홈</span>
+					</a>
+				</div>
+				<div>
+					<a href="#" class="btn messageBtn bg-white text-dark ml-3 mb-3">
+						<img src="https://cdn.icon-icons.com/icons2/3237/PNG/512/chatting_logo_tool_direct_message_social_media_icon_197332.png" alt="포인트" width="25px">
+						<span class="ml-3">메시지</span>
+					</a>
+				</div>
+				<div>
+					<a href="/post/post_create_view" class="btn crateBtn bg-white text-dark ml-3">
+						<img src="https://cdn-icons-png.flaticon.com/512/78/78181.png" alt="포인트" width="23px">
+						<span class="ml-3">만들기</span>
+					</a>
+				</div>
 			</div>
 		</div>
 		
@@ -56,3 +64,6 @@
 		</div>
 	</div>
 </div>
+<script>
+$()
+</script>

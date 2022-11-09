@@ -21,7 +21,7 @@
 			<nav>
 				<jsp:include page="../include/nav.jsp" />
 			</nav>
-			<section>
+			<section class="contents border-left">
 				<jsp:include page="../${viewName}.jsp" />
 			</section>
 		</div>

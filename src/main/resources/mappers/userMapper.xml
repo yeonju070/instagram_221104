@@ -5,25 +5,25 @@
 	<insert id="insertUser" parameterType="map">
 		INSERT INTO `user`
 		(
-		`loginId`
-		,`password`
-		,`phoneNumber`
-		,`imagePath`
-		,`name`
-		,`email`
-		,`createdAt`
-		,`updatedAt`
+			`loginId`
+			,`password`
+			,`phoneNumber`
+			,`imagePath`
+			,`name`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
 		)
 		VALUES
 		(
-		#{loginId}
-		, #{password}
-		, NULL
-		, NULL
-		, #{name}
-		, #{email}
-		, NOW()
-		, NOW()
+			#{loginId}
+			, #{password}
+			, NULL
+			, NULL
+			, #{name}
+			, #{email}
+			, NOW()
+			, NOW()
 		)
 	</insert>
 	<select id="existLoginId" parameterType="String" resultType="int">
@@ -51,5 +51,21 @@
 		WHERE
 			`loginId` = #{loginId}
 			AND `password` = #{password}
+	</select>
+	<select id="selectUserById" parameterType="int" resultType="com.instagram.user.model.User">
+		SELECT
+			`id`
+			,`loginId`
+			,`password`
+			,`phoneNumber`
+			,`imagePath`
+			,`name`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`user`
+		WHERE
+			`id` = #{id}
 	</select>
 </mapper>
