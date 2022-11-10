@@ -21,14 +21,14 @@ public class PostBO {
 
 	public int addPost(int userId, String userLoginId, String content, MultipartFile file) {
 		String imagePath = null;
-		if (file == null) {
+		if (file != null) {
+			// 파일이 있을 때만 업로드 처리 => 서버에 업로드
 			imagePath = fileManager.saveFile(userLoginId, file);
 		}
 		
 		return postDAO.insertPost(userId, content, imagePath);
 	}
 	
-	// post list 가져오는 객체
 	public List<Post> getPostList() {
 		return postDAO.selectPostList();
 	}

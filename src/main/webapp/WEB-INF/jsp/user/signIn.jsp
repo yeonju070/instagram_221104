@@ -56,11 +56,10 @@ $(document).ready(function() {
 		
 		$.post(url, params)
 		. done(function(data) {
-			if (data.code == 100) {
-				alert("로그인 되었습니다!");				
+			if (data.code == 100) {	
 				location.href="/timeline/timeline_view";
 			} else {
-				alert("로그인에 실패하였습니다. 다시 입력해주세요.");
+				alert("id 또는 비밀번호가 맞지 않습니다.\n다시 입력해주세요.");
 			}
 		});
 	});

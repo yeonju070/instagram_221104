@@ -1,0 +1,9 @@
+diff a/src/main/webapp/WEB-INF/jsp/timeline/timeline.jsp b/src/main/webapp/WEB-INF/jsp/timeline/timeline.jsp	(rejected hunks)
+@@ -5,6 +5,7 @@
+ 	<%-- 타임라인(게시글) 영역 --%>
+ 	<div class="timeline-box my-5">
+ 		<%-- 검색 영역 --%>
++		<c:if test="${not empty userId}">
+ 		<div class="d-flex">
+ 			<input type="text" id="search" class="form-control" placeholder="검색할 내용을 입력하세요.">
+ 			<button id="searchBtn" class="btn">검색</button>

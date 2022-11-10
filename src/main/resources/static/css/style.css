@@ -20,7 +20,8 @@ a:hover {text-decoration:none; color:#fff;}
 
 .timeline-contents {height:600px; width:800px;}
 /* 타임라인 mid */
-.timeline-box {width:450px;}
+.timeline-box {width:450px; height:auto;}
+.comment-btn {color: #00B5E3;}
 .post-create-box {height:600px;}
 section {width: 100%; height: 100%;}
 .timeline-profile {width:400px}

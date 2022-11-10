@@ -51,10 +51,10 @@
       		<%-- Modal 창 안에 내용 채워넣기 --%>
       		<div class="text-center">
       			<div class="py-3 border-bottom">
-      				<button id="profileDetailBtn" class="btn bg-white btn-block">설정</button>
+      				<a href="/user/user_detail_view" class="btn bg-white btn-block text-dark">설정</a>
       			</div>
       			<div class="py-3 border-bottom">
-      				<button id="signOutBtn" class="btn bg-white btn-block">로그아웃</button>
+      				<a href="/user/sign_out" class="btn bg-white btn-block text-dark">로그아웃</a>
       			</div>
       			<div class="py-3">
       				<%-- data-dismiss="modal" 모달창 닫힘 --%>

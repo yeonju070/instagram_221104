@@ -10,13 +10,13 @@ import com.instagram.post.model.Post;
 @Repository
 public interface PostDAO {
 
-	// post 업로드
+	// 게시글 업로드
 	public int insertPost(
 			@Param("userId") int userId, 
 			@Param("content") String content, 
 			@Param("imagePath") String imagePath);
 	
-	// postList를 가져오는 객체
+	// 게시글 list 가져오는 메소드
 	public List<Post> selectPostList();
 	
 	public Post selectPostById(int id);
