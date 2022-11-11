@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.instagram.post.bo.PostBO;
 import com.instagram.post.model.Post;
@@ -11,6 +12,7 @@ import com.instagram.timeline.model.CardView;
 import com.instagram.user.bo.UserBO;
 import com.instagram.user.model.User;
 
+@Service
 public class TimelineBO {
 	
 	@Autowired
@@ -33,6 +35,7 @@ public class TimelineBO {
 			User user = userBO.getUserById(post.getUserId());
 			card.setUser(user);
 			
+			// 카드 리스트에 채우기 
 			cardViewList.add(card);
 		}
 		

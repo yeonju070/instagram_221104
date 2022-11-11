@@ -19,7 +19,7 @@ public class FileManagerService {
 	public String saveFile(String userLoginId, MultipartFile file) {
 		// 파일 디렉토리 예) yeonJu_19324356/sun.png
 		String directoryName = userLoginId + "_" + System.currentTimeMillis() + "/"; // yeonJu_19324356/
-		String filePath = FILE_UPLOAD_PATH + directoryName; // "C:\\Users\\강정빈\\spring_project\\sns\\workspace\\images/yeonJu_19324356/
+		String filePath = FILE_UPLOAD_PATH + directoryName; // "C:\\Users\\강정빈\\personal project\\workspace\\images/yeonJu_19324356/
 
 		File directory = new File(filePath);
 		if (directory.mkdir() == false) {
