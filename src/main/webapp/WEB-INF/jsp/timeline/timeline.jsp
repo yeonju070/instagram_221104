@@ -99,8 +99,11 @@
 		<div class="modal-content">
       		<%-- Modal 창 안에 내용 채워넣기 --%>
       		<div class="text-center">
-      			<div class="py-3 border-bottom">
-      				<a href="#" id="delPostBtn">삭제하기</a>
+      			<div class="py-3">
+      				<a href="#" id="delPostBtn" class="btn">삭제</a>
+      			</div>
+      			<div class="py-3">
+      				<a href="/post/post_detail_view?postId=${post.id}" id="detailPostBtn" class="btn">수정</a>
       			</div>
       			<div class="py-3">
       				<%-- data-dismiss="modal" 모달창 닫힘 --%>

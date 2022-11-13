@@ -7,7 +7,7 @@
 		<div class="file-upload">
 			<input type="file" id="file" class="d-none" accept=".gif, .jpg, .png, .jpeg">
 			<a href="#" id="fileUploadBtn">
-				<img src=https://cdn.icon-icons.com/icons2/1415/PNG/512/ic-gallery_97654.png  alt="기본 이미지" width="350px" height="280px">
+				<img src="https://cdn-icons-png.flaticon.com/512/3304/3304773.png"  alt="기본 이미지" width="350px" height="400px">
 			</a>
 			<%-- 업로드 할 파일 이름이 임시로 저장될 공간 --%>
 			<div id="fileName"></div>

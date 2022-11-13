@@ -26,7 +26,7 @@
 				<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호를 입력하세요.">
 			</div>
 			<div class="d-flex">
-				<a id="signUpBtn" class="btn w-50 mt-3 mb-5" href="/user/sign_up_view">회원가입</a>
+				<a id="signUpBtn" class="btn text-white w-50 mt-3 mb-5" href="/user/sign_up_view">회원가입</a>
 				<button type="submit" id="login" class="btn w-50 mt-3 ml-3 mb-5 text-white">로그인</button>
 			</div>
 		</form>

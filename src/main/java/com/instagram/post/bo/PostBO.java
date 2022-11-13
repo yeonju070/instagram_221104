@@ -19,6 +19,7 @@ public class PostBO {
 	@Autowired
 	private FileManagerService fileManager;
 
+	// 게시글 작성
 	public int addPost(int userId, String userLoginId, String content, MultipartFile file) {
 		String imagePath = null;
 		if (file != null) {
@@ -29,11 +30,17 @@ public class PostBO {
 		return postDAO.insertPost(userId, content, imagePath);
 	}
 	
+	// timelineBO에 보낼 post의 리스트
 	public List<Post> getPostList() {
 		return postDAO.selectPostList();
 	}
 	
 	public Post getPostByPostId(int postId) {
 		return postDAO.selectPostById(postId);
+	}
+	
+	// 게시글을 수정할 메소드
+	public Post getPostByPostIdAndUserId(int postId, int userId) {
+		return postDAO.selectPostByPostIdAndUserId(postId, userId);
 	}
 }

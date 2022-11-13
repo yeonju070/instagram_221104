@@ -20,4 +20,9 @@ public interface PostDAO {
 	public List<Post> selectPostList();
 	
 	public Post selectPostById(int id);
+	
+	// 게시글 수정 메소드
+	public Post selectPostByPostIdAndUserId(
+			@Param("postId") int postId,
+			@Param("userId") int userId);
 }

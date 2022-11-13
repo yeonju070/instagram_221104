@@ -49,6 +49,23 @@
 			`id` = #{id}
 	</select>
 	
+	<select id="selectPostByPostIdAndUserId" parameterType="map"
+			resultType="com.instagram.post.model.Post">
+		SELECT
+			`id`
+			,`userId`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`post`
+		WHERE
+			`userId` = #{userId}
+			AND
+			`id` = #{postId}
+	</select>
+	
 	<delete id="deletePostByPostIdAndUserId" parameterType="map">
 		DELETE
 		FROM
