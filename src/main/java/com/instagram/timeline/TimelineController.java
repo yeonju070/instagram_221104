@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.instagram.post.bo.PostBO;
-import com.instagram.post.model.Post;
 import com.instagram.timeline.bo.TimelineBO;
 import com.instagram.timeline.model.CardView;
 

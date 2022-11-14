@@ -2,10 +2,14 @@ package com.instagram;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.ObjectUtils;
 
 @SpringBootTest
 class InstagramApplicationTests {
@@ -23,5 +27,17 @@ class InstagramApplicationTests {
 		int a = 10;
 		int b = 20;
 		assertEquals(30, a + b);
+	}
+	
+	@Test
+	void 테스트() {
+		String a = "";
+		String b = null;
+		List<Integer> list = null;
+		List<Integer> list1 = new ArrayList<>();
+		
+		if (ObjectUtils.isEmpty(list)) {
+			log.info("### b is empty");
+		}
 	}
 }

@@ -22,7 +22,9 @@ public interface PostDAO {
 	public Post selectPostById(int id);
 	
 	// 게시글 수정 메소드
-	public Post selectPostByPostIdAndUserId(
+	public int updatePost(			
 			@Param("postId") int postId,
-			@Param("userId") int userId);
+			@Param("userId") int userId,
+			@Param("content") String content,
+			@Param("imagePath") String imagePath);
 }

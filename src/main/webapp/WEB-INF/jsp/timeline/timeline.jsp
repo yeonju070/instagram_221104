@@ -23,7 +23,7 @@
 						<span class="font-weight-bold text-dark ml-1">${card.user.loginId}</span>
 					</a>
 					<%-- 내가 쓴 글일때만 보이게 조건 --%>
-					<a href="#" class="more-btn" data-toggle="modal" data-target="#more-modal">
+					<a href="#" class="more-btn" data-toggle="modal" data-target="#more-modal" data-post-id="${card.post.id}" data-content-id="${card.post.content}">
 						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/330px-Hamburger_icon.svg.png" width="25">
 					</a>
 				</div>
@@ -103,7 +103,7 @@
       				<a href="#" id="delPostBtn" class="btn">삭제</a>
       			</div>
       			<div class="py-3">
-      				<a href="/post/post_detail_view?postId=${post.id}" id="detailPostBtn" class="btn">수정</a>
+      				<a href="/post/post_detail_view?postId=${card.post.id}" id="detailPostBtn" class="btn">수정</a>
       			</div>
       			<div class="py-3">
       				<%-- data-dismiss="modal" 모달창 닫힘 --%>
@@ -113,3 +113,24 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+	// 더보기를 눌렀을 때 수정할 postId를 모달에 넣는다.
+	$('.more-btn').on('click', function(e) {
+		e.preventDefault();
+		
+		let postId = $(this).data('post-id');	// 게시글의 글번호를 가져온다.
+		
+		$('#more-modal').data('post-id', postId);
+	});
+	
+	// modal의 수정 클릭
+	$('#detailPostBtn').on('click', function(e) {
+		e.preventDefault();
+		
+		let postId = $('#more-modal').data('post-id');	// modal에 게시글번호를 가져온다.
+		
+		location.href = "/post/post_detail_view?postId=" + postId;
+	});
+});
+</script>

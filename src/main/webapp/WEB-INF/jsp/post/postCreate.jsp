@@ -60,7 +60,7 @@ $(document).ready(function() {
 		let content = $('#content').val();
 		
 		if (content.length == '') {
-			alert("글 내용을 입력해주세요");
+			alert("내용을 입력해주세요");
 			return;
 		}
 		

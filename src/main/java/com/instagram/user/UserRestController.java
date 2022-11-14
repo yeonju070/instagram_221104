@@ -23,29 +23,13 @@ public class UserRestController {
 	private UserBO userBO;
 	
 	/*
-	 * 로그인 중복 확인
-	 */
-	@RequestMapping("/is_duplicated_id")
-	public Map<String, Object> isDuplicatedId(
-			@RequestParam("loginId") String loginId) {
-
-		Map<String, Object> result = new HashMap<>();
-		int existRowCount = userBO.existLoginId(loginId);
-		if (existRowCount > 0) {
-			result.put("result", true);
-		} else {
-			result.put("result", false);
-		}
-
-		return result;
-	}
-
-	/*
 	 * 회원 가입
 	 */
 	@RequestMapping("/sign_up")
-	public Map<String, Object> signUp(@RequestParam("loginId") String loginId,
-			@RequestParam("password") String password, @RequestParam("name") String name,
+	public Map<String, Object> signUp(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password,
+			@RequestParam("name") String name,
 			@RequestParam("email") String email) {
 
 		String encryptPassword = EncryptUtils.md5(password);
@@ -73,7 +57,7 @@ public class UserRestController {
 		
 		if (user != null) {
 			result.put("code", 100);
-			// 로그인 처리 - 세션에 저장(로그인 상태를 유지한다)
+			// session에 유저 정보담기(로그인 상태 유지)
 			HttpSession session = request.getSession();
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());	
@@ -81,6 +65,24 @@ public class UserRestController {
 		} else {
 			result.put("error", "입력 실패");
 		}
+		return result;
+	}
+	
+	/*
+	 * 로그인 중복 확인
+	 */
+	@RequestMapping("/is_duplicated_id")
+	public Map<String, Object> isDuplicatedId(
+			@RequestParam("loginId") String loginId) {
+		
+		Map<String, Object> result = new HashMap<>();
+		int existRowCount = userBO.existLoginId(loginId);
+		if (existRowCount > 0) {
+			result.put("result", true);
+		} else {
+			result.put("result", false);
+		}
+		
 		return result;
 	}
 }

@@ -10,17 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.instagram.post.bo.PostBO;
-import com.instagram.post.model.Post;
 import com.instagram.timeline.bo.TimelineBO;
 import com.instagram.timeline.model.CardView;
 
 @RequestMapping("/post")
 @Controller
 public class PostController {
-	
-	@Autowired
-	private PostBO postBO;
 	
 	@Autowired
 	private TimelineBO timelineBO;
@@ -51,12 +46,11 @@ public class PostController {
 		}
 		
 		// postId에 대한 하는 데이터값
-		Post post = postBO.getPostByPostIdAndUserId(postId, userId);
+		// Post post = postBO.getPostByPostIdAndUserId(postId, userId);
 		
 		// CardView 타임라인에 뿌리기
 		List<CardView> cardViewList = timelineBO.generateCardList(userId);
 		
-		model.addAttribute("post", post);
 		model.addAttribute("cardList", cardViewList);
 		model.addAttribute("viewName", "post/postDetail");
 		return "template/layout";

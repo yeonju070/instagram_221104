@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,17 +32,33 @@ public class PostRestController {
 		String userLoginId = (String) session.getAttribute("userLoginId");
 		
 		Map<String, Object> result = new HashMap<>();
-		if (userId == null) {
-			result.put("code", 300);
-			result.put("result", "error");
-			result.put("errorMessage", "로그인을 해주세요.");
-			return result;
-		}
 		
 		postBO.addPost(userId, userLoginId, content, file);
-		
 		result.put("code", 100);
-		result.put("result", "success");
+		return result;
+	}
+	
+	// 게시글 수정
+	@PutMapping("/update")
+	public Map<String, Object> update(
+			@RequestParam("postId") int postId,
+			@RequestParam("content") String content,
+			@RequestParam("file") MultipartFile file,
+			HttpSession session) {
+		
+		int userId = (int)session.getAttribute("userId");
+		String userLoginId =  (String)session.getAttribute("userLoginId");
+		
+		int count = postBO.updatePost(postId, userId, userLoginId, content, file);
+		
+		Map<String, Object> result = new HashMap<>();
+		if (count > 0) {
+			result.put("code", 100);	// 성공
+		} else {
+			result.put("code", 400);	// 실패
+			result.put("errorMessage", "글 수정에 실패했습니다.");
+		}
+		
 		return result;
 	}
 }

@@ -29,6 +29,8 @@ public class TimelineBO {
 		for (Post post : postList) {
 			CardView card = new CardView();
 			// 게시글 정보
+			post = postBO.updatePost(post.getId(), post.getUserId(),
+					post.getContent());			
 			card.setPost(post);
 			
 			// 글쓴이 정보
