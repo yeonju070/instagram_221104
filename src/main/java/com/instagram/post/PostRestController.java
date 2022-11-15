@@ -49,10 +49,10 @@ public class PostRestController {
 		int userId = (int)session.getAttribute("userId");
 		String userLoginId =  (String)session.getAttribute("userLoginId");
 		
-		int count = postBO.updatePost(postId, userId, userLoginId, content, file);
+		int row = postBO.updatePost(postId, userId, userLoginId, content, file);
 		
 		Map<String, Object> result = new HashMap<>();
-		if (count > 0) {
+		if (row > 0) {
 			result.put("code", 100);	// 성공
 		} else {
 			result.put("code", 400);	// 실패

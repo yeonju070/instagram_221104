@@ -10,17 +10,17 @@ public class CardView {
 	// 글쓴이 정보
 	private User user;
 
+	// 좋아요 개수
+	private int likeCount;
+	
+	// 로그인 사람이 좋아요를 눌렀는지
+	private boolean filledLike;  // 눌렀으면 true 아니면 false
+	
 	// 댓글 N개
 	//private List<CommentView> commentList;
 	
 	// 댓글 개수
 	//private int commentCount;
-	
-	// 좋아요 개수
-	//private int likeCount;
-	
-	// 로그인 사람이 좋아요를 눌렀는지
-	//private boolean filledLike;  // 눌렀으면 true 아니면 false
 
 	public Post getPost() {
 		return post;
@@ -37,4 +37,21 @@ public class CardView {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+
+	public boolean isFilledLike() {
+		return filledLike;
+	}
+
+	public void setFilledLike(boolean filledLike) {
+		this.filledLike = filledLike;
+	}
+	
 }

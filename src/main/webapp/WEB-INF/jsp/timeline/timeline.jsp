@@ -30,16 +30,20 @@
 				
 				<%-- 카드 이미지 --%>
 				<div class="card-img">
-					<img src="${card.post.imagePath}" class="w-100" alt="본문 이미지">
+					<img src="${card.post.imagePath}" class="w-100" height="350px" alt="본문 이미지">
 				</div>
 				
 				<%-- 좋아요, 댓글 --%>
 				<div class="card-like ml-3 mt-2">
-					<a href="#" class="like-btn">
-						<img src="https://cdn-icons-png.flaticon.com/512/7476/7476962.png" width="18px" height="18px" alt="filled heart">
+					<a href="#" class="like-btn" data-user-id="${userId}" data-post-id="${card.post.id}">
+						<c:if test="${card.filledLike eq false}">
+							<img src="https://cdn-icons-png.flaticon.com/512/7476/7476962.png" width="18px" height="18px" alt="filled heart">
+						</c:if>
+						<c:if test="${card.filledLike eq true}">
 						<img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" width="18px" height="18px" alt="empty heart">
+						</c:if>
+						<span>좋아요 ${card.likeCount}</span>
 					</a>
-					<span>좋아요</span>
 				</div>
 				
 				<%-- 글 --%>
@@ -131,6 +135,35 @@ $(document).ready(function() {
 		let postId = $('#more-modal').data('post-id');	// modal에 게시글번호를 가져온다.
 		
 		location.href = "/post/post_detail_view?postId=" + postId;
+	});
+	
+	// 좋아요 버튼 클릭
+	$('.like-btn').on('click', function(e) {
+		e.preventDefault();
+		
+		let userId = $(this).data('user-id');
+		let postId = $(this).data('post-id');
+
+		// validation
+		if (userId == '') {
+			alert("로그인 후 이용해주세요.");
+			return;
+		}
+		
+		// ajax
+		$.ajax({
+			url:"/like/" + postId
+			,success:function(data) {
+				if (data.code == 100) {
+					location.reload(true);
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(e) {
+				alert("좋아요를 수행하는데 실패했습니다. 관리자에게 문의해주세요.");
+			}
+		});
 	});
 });
 </script>

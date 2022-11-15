@@ -22,7 +22,7 @@
 				<strong class="ml-3 text-dark">${userLoginId}</strong>
 			</div>
 			<div class="mt-3">
-				<textarea id="content" rows="7" cols="40">${card.post.content}</textarea>
+				<textarea id="content" rows="7" cols="40" placeholder="내용을 입력해주세요.">${card.post.content}</textarea>
 			</div>
 			<button id="writeBtn" class="btn btn-block text-white mt-1" data-post-id="${card.post.id}">게시</button>
 		</div>	<%-- 프로필, 내가 적을 문구 영역 종료 --%>
@@ -31,6 +31,32 @@
 </div>
 <script>
 $(document).ready(function() {
+	$('#fileUploadBtn').on('click', function(e) {
+		e.preventDefault();
+		
+		$('#file').click();
+	});
+	
+	$('#file').on('change', function(e) {
+		
+		let fileName = e.target.files[0].name;
+		let ext = fileName.split('.').pop().toLowerCase();
+		
+		// 확장자 유효성 확인
+		if (fileName.split('.').length < 2 || 
+				(ext != 'gif'
+						&& ext != 'png'
+							&& ext != 'jpg'
+								&& ext != 'jpeg')) {
+			alert("이미지 파일만 업로드 할 수 있습니다.");
+			$(this).val('');
+			$('#fileName').text('');
+			return;
+		}
+		
+		$('#fileName').text(fileName);
+	});
+	
 	$('#writeBtn').on('click',function() {
 		
 		// validation

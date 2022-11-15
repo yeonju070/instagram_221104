@@ -14,19 +14,19 @@
 			<div>
 				<div>
 					<a href="/timeline/timeline_view" class="btn homeBtn bg-white text-dark ml-3 mb-3">
-						<img src="https://cdn-icons-png.flaticon.com/512/70/70950.png" alt="포인트" width="25px">
+						<img src="https://cdn-icons-png.flaticon.com/512/70/70950.png" alt="홈" width="25px">
 						<span class="ml-3">홈</span>
 					</a>
 				</div>
 				<div>
 					<a href="#" class="btn messageBtn bg-white text-dark ml-3 mb-3">
-						<img src="https://cdn.icon-icons.com/icons2/3237/PNG/512/chatting_logo_tool_direct_message_social_media_icon_197332.png" alt="포인트" width="25px">
+						<img src="https://cdn.icon-icons.com/icons2/3237/PNG/512/chatting_logo_tool_direct_message_social_media_icon_197332.png" alt="메시지" width="25px">
 						<span class="ml-3">메시지</span>
 					</a>
 				</div>
 				<div>
 					<a href="/post/post_create_view" class="btn crateBtn bg-white text-dark ml-3">
-						<img src="https://cdn-icons-png.flaticon.com/512/78/78181.png" alt="포인트" width="23px">
+						<img src="https://cdn-icons-png.flaticon.com/512/78/78181.png" alt="만들기" width="23px">
 						<span class="ml-3">만들기</span>
 					</a>
 				</div>
