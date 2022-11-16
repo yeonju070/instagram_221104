@@ -3,11 +3,12 @@
 a {text-decoration:none; color:#000;}
 a:hover {text-decoration:none; color:#000;}
 
-
+nav {width:245px; height:100%; position: fixed;}
+.contents {padding-left: 245px;}
 
 .loginHeader {height:60px;}
 .bin-box {height:50px;}
-.login-contents {height:600px; width:400px}
+.login-contents {height:600px; width:400px;}
 #signUpBtn {background:#00B5E3;}
 #login {background:#00B5E3;}
 #searchBtn {background:#00B5E3;}
@@ -15,7 +16,7 @@ a:hover {text-decoration:none; color:#000;}
 
 .timeline-nav {height:600px; width:245px;}
 .logo {height:25%;}
-.menu {height:400px;}
+.menu {height:500px;}
 #fileName {width:10px;}
 
 .timeline-contents {height:600px; width:800px;}

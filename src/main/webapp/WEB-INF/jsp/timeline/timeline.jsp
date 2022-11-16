@@ -143,7 +143,6 @@ $(document).ready(function() {
 		
 		let userId = $(this).data('user-id');
 		let postId = $(this).data('post-id');
-
 		// validation
 		if (userId == '') {
 			alert("로그인 후 이용해주세요.");

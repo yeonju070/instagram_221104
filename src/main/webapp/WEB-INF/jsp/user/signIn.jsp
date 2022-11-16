@@ -44,7 +44,6 @@ $(document).ready(function() {
 			alert('사용자 이름을 입력하세요.');
 			return;
 		}
-
 		if (password == '') {
 			alert('비밀번호를 이름을 입력하세요.');
 			return;

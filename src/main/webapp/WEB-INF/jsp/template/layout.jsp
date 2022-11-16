@@ -18,10 +18,10 @@
 <body>
 	<div id="wrap">
 		<div class="d-flex justify-content-between">
-			<nav>
+			<nav class="border-right">
 				<jsp:include page="../include/nav.jsp" />
 			</nav>
-			<section class="contents border-left">
+			<section class="contents">
 				<jsp:include page="../${viewName}.jsp" />
 			</section>
 		</div>
