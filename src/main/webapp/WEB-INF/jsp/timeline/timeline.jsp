@@ -18,11 +18,12 @@
 			<div class="card border rounded mt-3">
 				<%-- 글쓴이, 더보기 --%>
 				<div class="p-2 d-flex justify-content-between">
+					<%-- 글쓴이 --%>
 					<a href="#">
-						<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="25px" alt="기본 유저사진">
+						<img src=https://media.istockphoto.com/id/1168022051/ko/%EB%B2%A1%ED%84%B0/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%98%90%EB%8A%94-%EC%9D%B8%EC%A6%9D-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%82%AC%EB%9E%8C-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=usGMDDtBu7aYOubS3rP2Ot5-vzjMHik905IMJpJa7Ps= width="25px" alt="기본 유저사진">
 						<span class="font-weight-bold text-dark ml-1">${card.user.loginId}</span>
 					</a>
-					<%-- 내가 쓴 글일때만 보이게 조건 --%>
+					<%-- 더보기 --%>
 					<a href="#" class="more-btn" data-toggle="modal" data-target="#more-modal" data-post-id="${card.post.id}" data-content-id="${card.post.content}">
 						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/330px-Hamburger_icon.svg.png" width="25">
 					</a>
@@ -30,7 +31,7 @@
 				
 				<%-- 카드 이미지 --%>
 				<div class="card-img">
-					<img src="${card.post.imagePath}" class="w-100" height="350px" alt="본문 이미지">
+					<img src="${card.post.imagePath}" class="w-100" alt="본문 이미지">
 				</div>
 				
 				<%-- 좋아요, 댓글 --%>
@@ -83,14 +84,33 @@
 	<%-- 프로필 영역 --%>
 	<div class="timeline-profile-box p-5">
 		<c:if test="${not empty userName}">
-		<div class="d-flex align-items-center">
+		<div class="user-profile">
 			<%-- 내 프로필 --%>
-			<div>
-				<a href="#">
-					<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="30px" alt="기본 유저사진">
-					<span class="ml-3 text-dark">${userLoginId}</span>
+			<div class="d-flex align-items-center mb-3">
+				<a href="/user/profile_view">
+					<img src="https://media.istockphoto.com/id/1168022051/ko/%EB%B2%A1%ED%84%B0/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%98%90%EB%8A%94-%EC%9D%B8%EC%A6%9D-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%82%AC%EB%9E%8C-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=usGMDDtBu7aYOubS3rP2Ot5-vzjMHik905IMJpJa7Ps=" width="50px" alt="기본 유저사진">
+					<span class="ml-2 font-weight-bold">${userLoginId}</span>
 				</a>
 			</div>
+			
+			<div class="another">
+				<span class="ml-1 text-secondary font-weight-bold">회원님을 위한 추천</span>
+			</div>
+			
+			<%-- 다른 사람 프로필 --%>
+			<c:forEach items="${cardList}" var="card">
+			<div class="another-user mt-3 d-flex align-items-center justify-content-between">
+				<div>
+					<a href="/user/profile_view">
+						<img src="https://media.istockphoto.com/id/1168022051/ko/%EB%B2%A1%ED%84%B0/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%98%90%EB%8A%94-%EC%9D%B8%EC%A6%9D-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%82%AC%EB%9E%8C-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=usGMDDtBu7aYOubS3rP2Ot5-vzjMHik905IMJpJa7Ps=" width="50px" alt="기본 유저사진">
+						<span class="ml-2 text-dark font-weight-bold">${card.user.loginId}</span>
+					</a>
+				</div>
+				<div class="align-items-end">
+					<a href="#" class="follow-btn font-weight-bold">팔로우</a>
+				</div>
+			</div>
+			</c:forEach>
 		</div>
 		</c:if>
 	</div>
@@ -107,7 +127,7 @@
       				<a href="#" id="delPostBtn" class="btn">삭제</a>
       			</div>
       			<div class="py-3">
-      				<a href="/post/post_detail_view?postId=${card.post.id}" id="detailPostBtn" class="btn">수정</a>
+      				<a href="#" id="detailPostBtn" class="btn">수정</a>
       			</div>
       			<div class="py-3">
       				<%-- data-dismiss="modal" 모달창 닫힘 --%>

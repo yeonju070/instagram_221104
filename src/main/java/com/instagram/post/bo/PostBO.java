@@ -43,7 +43,7 @@ public class PostBO {
 		return postDAO.selectPostById(postId);
 	}
 	
-	// 게시글을 수정
+	// 게시글 수정
 	public int updatePost(int postId, int userId, String userLoginId,
 			String content, MultipartFile file) {
 		

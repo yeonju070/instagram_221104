@@ -35,7 +35,7 @@
 		
 		<%-- nav 더보기 영역 --%>
 		<div class="detail d-flex align-items-end ml-3">
-			<a href="#" class="btn bg-white" data-toggle="modal" data-target="modal">
+			<a href="#" class="more-btn" data-toggle="modal" data-target="#modal">
 				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/330px-Hamburger_icon.svg.png" alt="더보기" width="30px">
 				<span class="ml-3">더보기</span>
 			</a>
@@ -48,16 +48,16 @@
 	<div class="modal-dialog modal-dialog-centered modal-sm">
 		<div class="modal-content">
       		<%-- Modal 창 안에 내용 채워넣기 --%>
-      		<div class="text-center">
-      			<div class="py-3 border-bottom">
-      				<a href="/user/user_detail_view" class="btn bg-white btn-block text-dark">설정</a>
+   			<div class="text-center">
+      			<div class="py-3">
+      				<a href="#" id="detailBtn" class="btn">설정</a>
       			</div>
-      			<div class="py-3 border-bottom">
-      				<a href="/user/sign_out" class="btn bg-white btn-block text-dark">로그아웃</a>
+      			<div class="py-3">
+      				<a href="/user/sign_out" class="btn">로그아웃</a>
       			</div>
       			<div class="py-3">
       				<%-- data-dismiss="modal" 모달창 닫힘 --%>
-      				<button data-dismiss="modal" class="btn bg-white btn-block">취소</button>
+      				<a href="#" data-dismiss="modal">취소</a>
       			</div>
       		</div>
 		</div>

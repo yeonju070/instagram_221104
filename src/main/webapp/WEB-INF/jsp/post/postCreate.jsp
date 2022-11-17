@@ -6,21 +6,21 @@
 		<div class="file-upload">
 			<input type="file" id="file" class="d-none" accept=".gif, .jpg, .png, .jpeg">
 			<a href="#" id="fileUploadBtn">
-				<img src="https://cdn-icons-png.flaticon.com/512/3304/3304773.png"  alt="기본 이미지" width="350px" height="400px">
+				<img src="https://cdn.icon-icons.com/icons2/2543/PNG/512/gallery_photo_image_icon_152224.png"  alt="기본 이미지" width="350px" height="300px">
 			</a>
 			<%-- 업로드 할 파일 이름이 임시로 저장될 공간 --%>
 			<div id="fileName"></div>
 		</div>
 		<%-- 프로필, 내가 적을 문구 --%>
 		<div class="post-user-info ml-3">
-			<div class="d-flex justify-content-start align-items-center ">
-				<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="50px" alt="기본 유저사진">
-				<strong class="ml-3 text-dark">${userLoginId}</strong>
+			<div class="d-flex justify-content-start align-items-center">
+				<img src="https://media.istockphoto.com/id/1168022051/ko/%EB%B2%A1%ED%84%B0/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%98%90%EB%8A%94-%EC%9D%B8%EC%A6%9D-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%82%AC%EB%9E%8C-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=usGMDDtBu7aYOubS3rP2Ot5-vzjMHik905IMJpJa7Ps=" width="45px" alt="기본 유저사진">
+				<h4 class="ml-3">${userLoginId}</h4>
 			</div>
 			<div class="mt-3">
-				<textarea id="content" rows="7" cols="40" placeholder="내용을 입력해주세요"></textarea>
+				<textarea class="form-control" style="height: 160px; width:300px;" placeholder="내용을 입력해주세요."></textarea>
 			</div>
-			<button id="writeBtn" class="btn btn-block text-white mt-1">게시</button>
+			<button id="writeBtn" class="btn btn-block text-white mt-2">게시</button>
 		</div>	<%-- 프로필, 내가 적을 문구 영역 종료 --%>
 	</div>
 </div>
