@@ -55,21 +55,28 @@
 				
 				<%-- 댓글 --%>
 				<div class="card-comment-desc border-bottom">
-					<div class="ml-3 mb-2 font-weight-bold">댓글</div>
+					<div class="ml-3 mb-2 font-weight-bold">댓글 ${card.commentCount}</div>
 				</div>
 				
 				<%-- 댓글 내용 --%>
 				<div class="card-comment-list">
 					<%-- 댓글 목록 --%>
+					<c:forEach items="${card.commentList}" var="commentView">
 					<div class="card-comment my-2 ml-3">
-						<span class="font-weight-bold">댓글:</span>
-						<span>내용</span>
+						<c:if test="${not empty commentView.user.loginId}">
+						<span class="font-weight-bold">${commentView.user.loginId}:</span>
+						</c:if>
+						<c:if test="${empty commentView.user.loginId}">
+						<span class="font-weight-bold">댓글없음</span>
+						</c:if>
+						<span>${commentView.comment.content}</span>
 						
 						<%-- 댓글 삭제 버튼 --%>
-						<a href="#" class="comment-delBtn">
+						<a href="#" class="comment-delBtn" data-comment-id="${commentView.comment.id}">
 							<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
 						</a>
 					</div>
+					</c:forEach>
 					<%-- 댓글 쓰기 --%>
 					<div class="comment-write d-flex border-top mt-3">
 						<input type="text" class="form-control border-0" placeholder="댓글 달기"/> 
@@ -124,10 +131,10 @@
       		<%-- Modal 창 안에 내용 채워넣기 --%>
       		<div class="text-center">
       			<div class="py-3">
-      				<a href="#" id="delPostBtn" class="btn">삭제</a>
+      				<a href="#" id="delPostBtn" class="btn text-danger font-weight-bold">삭제</a>
       			</div>
       			<div class="py-3">
-      				<a href="#" id="detailPostBtn" class="btn">수정</a>
+      				<a href="#" id="detailPostBtn" class="btn text-detail font-weight-bold">수정</a>
       			</div>
       			<div class="py-3">
       				<%-- data-dismiss="modal" 모달창 닫힘 --%>
@@ -200,7 +207,7 @@ $(document).ready(function() {
 		// ajax
 		$.ajax({
 			type:"post"
-			,url:"comment/create"
+			,url:"/comment/create"
 			,data:{"postId":postId, "content":content}
 			,success:function(data) {
 				if (data.code == 100) {
@@ -212,6 +219,30 @@ $(document).ready(function() {
 			}
 			,error: function(e) {
 				alert("댓글 게시에 실패했습니다. 관리자에게 문의해주세요.");
+			}
+		});
+	});
+	
+	// 댓글 삭제
+	$('.comment-delBtn').on('click', function(e) {
+		e.preventDefault();
+		
+		let commentId = $(this).data('comment-id');
+		
+		// ajax 댓글 삭제
+		$.ajax({
+			type:"delete"
+			, url:"/comment/delete"
+			, data:{"commentId":commentId}
+			, success:function(data) {
+				if (data.code == 100) {
+					location.reload();
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(e) {
+				alert("댓글 삭제에 실패했습니다. 관리자에게 문의해주세요");
 			}
 		});
 	});

@@ -30,12 +30,14 @@ public class TimelineBO {
 	@Autowired
 	private CommentBO commentBO;
 	
+	// 가공된 CardView를 만드는 객체
 	public List<CardView> generateCardList(Integer userId) {
 		List<CardView> cardViewList = new ArrayList<>();
 		
 		// 게시글 목록 가져오기
 		List<Post> postList = postBO.getPostList();
 		
+		// cardView에 채우기
 		for (Post post : postList) {
 			CardView card = new CardView();
 			
@@ -61,6 +63,9 @@ public class TimelineBO {
 			List<CommentView> commentList = commentBO.generateCommentViewListByPostId(post.getId());
 			card.setCommentList(commentList);
 			
+			// 댓글 개수
+			card.setCommentCount(commentBO.getCommentByPostIdOrUserId(post.getId(), null));
+	
 			cardViewList.add(card);
 		}
 		return cardViewList;

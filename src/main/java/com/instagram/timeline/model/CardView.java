@@ -1,4 +1,4 @@
-	package com.instagram.timeline.model;
+package com.instagram.timeline.model;
 
 import java.util.List;
 
@@ -9,21 +9,29 @@ import com.instagram.user.model.User;
 public class CardView {
 	// 글 1개
 	private Post post;
-	
+
 	// 글쓴이 정보
 	private User user;
 
 	// 좋아요 개수
 	private int likeCount;
-	
+
 	// 로그인한 사람이 좋아요를 눌렀는지 확인(눌렀으면 true 아니면 false)
 	private boolean filledLike;
-	
+
 	// 댓글 N개
 	private List<CommentView> commentList;
-	
+
 	// 댓글 개수
-	//private int commentCount;
+	private int commentCount;
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
 
 	public List<CommentView> getCommentList() {
 		return commentList;
@@ -64,5 +72,5 @@ public class CardView {
 	public void setFilledLike(boolean filledLike) {
 		this.filledLike = filledLike;
 	}
-	
+
 }

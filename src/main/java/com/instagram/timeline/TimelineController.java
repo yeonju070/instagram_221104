@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.instagram.timeline.bo.TimelineBO;
 import com.instagram.timeline.model.CardView;
-import com.instagram.user.bo.UserBO;
 
 @RequestMapping("/timeline")
 @Controller
@@ -20,8 +19,8 @@ public class TimelineController {
 	@Autowired
 	private TimelineBO timelineBO;
 	
-	@Autowired
-	private UserBO userBO;
+	//@Autowired
+	//private UserBO userBO;
 	
 	// 타임라인 화면
 	@RequestMapping("/timeline_view")

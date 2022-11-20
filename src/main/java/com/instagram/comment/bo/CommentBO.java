@@ -14,14 +14,13 @@ import com.instagram.user.model.User;
 
 @Service
 public class CommentBO {
-	
 	@Autowired
 	private CommentDAO commentDAO;
 	
 	@Autowired
 	private UserBO userBO;
 	
-	// 댓글 생성
+	// 댓글 만드는 메소드
 	public void addComment(int userId, int postId, String content) {
 		commentDAO.insertComment(userId, postId, content);
 	}
@@ -40,19 +39,27 @@ public class CommentBO {
 		// 댓글 목록 가져오기
 		List<Comment> commentList = getCommentListByPostId(postId);
 		
-		// List<CommentView>에 CommentView 채운다.
+		// List<CommentView>에 CommentView를 채운다.
 		for (Comment comment : commentList) {
 			CommentView commentView = new CommentView();
 			commentView.setComment(comment);
 			
-			// 댓글 단 유저
 			User user = userBO.getUserById(comment.getUserId());
 			commentView.setUser(user);
 			
 			commentViewList.add(commentView);
 		}
 		
-		// 리스트를 리턴한다.
 		return commentViewList;
+	}
+	
+	// 댓글 삭제
+	public void deleteCommentBYCommentIdAndUserId(int commentId, int userId) {
+		commentDAO.deleteCommentByCommentIdAndUserId(commentId, userId);
+	}
+	
+	// 댓글 개수
+	public int getCommentByPostIdOrUserId(int postId, Integer userId) {
+		return commentDAO.selectCommentByPostIdOrUserId(postId, userId);
 	}
 }

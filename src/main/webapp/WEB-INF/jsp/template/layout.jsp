@@ -34,10 +34,10 @@
 	      		<%-- Modal 창 안에 내용 채워넣기 --%>
 	   			<div class="text-center">
 	      			<div class="py-3">
-	      				<a href="/user/profile_detail_view" id="detailBtn" class="btn">설정</a>
+	      				<a href="/user/profile_detail_view" id="detailBtn" class="btn text-secondary font-weight-bold">설정</a>
 	      			</div>
 	      			<div class="py-3">
-	      				<a href="/user/sign_out" class="btn">로그아웃</a>
+	      				<a href="/user/sign_out" class="btn text-danger font-weight-bold">로그아웃</a>
 	      			</div>
 	      			<div class="py-3">
 	      				<%-- data-dismiss="modal" 모달창 닫힘 --%>

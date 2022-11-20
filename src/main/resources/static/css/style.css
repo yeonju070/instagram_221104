@@ -28,6 +28,7 @@ nav {width:245px; height:100%; position: fixed;}
 .post-create-box {height:600px;}
 section {width: 100%; height: 100%;}
 .timeline-profile {width:400px}
+.text-detail {color: #00B5E3;}
 
 /* 프로필 상세영역 */
 .profile-box {width:600px;}

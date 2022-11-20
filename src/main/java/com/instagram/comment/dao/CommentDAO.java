@@ -18,4 +18,14 @@ public interface CommentDAO {
 	
 	// 댓글 리스트
 	public List<Comment> selectCommentListByPostId(int postId);
+	
+	// 댓글 삭제
+	public void deleteCommentByCommentIdAndUserId(
+			@Param("commentId") int commentId,
+			@Param("userId") int userId);
+	
+	// 댓글 개수
+	public int selectCommentByPostIdOrUserId(
+			@Param("postId") int postId, 
+			@Param("userId") Integer userId);
 }
