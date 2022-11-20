@@ -36,4 +36,9 @@ public class LikeBO {
 	public int getLikeCountByPostId(int postId) {
 		return likeDAO.selectLikeCountByPostId(postId);
 	}
+	
+	// 게시글 삭제
+	public void deleteLikeByPostId(int postId) {
+		likeDAO.deleteLikeByPostId(postId);
+	}
 }

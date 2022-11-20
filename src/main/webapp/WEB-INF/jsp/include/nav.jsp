@@ -34,7 +34,7 @@
 		</div>
 		
 		<%-- nav 더보기 영역 --%>
-		<div class="detail d-flex align-items-end ml-3">
+		<div class="detail d-flex ml-4">
 			<a href="#" class="more-btn" data-toggle="modal" data-target="#modal">
 				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/330px-Hamburger_icon.svg.png" alt="더보기" width="30px">
 				<span class="ml-3">더보기</span>

@@ -28,4 +28,7 @@ public interface CommentDAO {
 	public int selectCommentByPostIdOrUserId(
 			@Param("postId") int postId, 
 			@Param("userId") Integer userId);
+	
+	// 게시글 삭제
+	public void deleteCommentByPostId(int postId);
 }

@@ -18,7 +18,7 @@
 				<h4 class="ml-3">${userLoginId}</h4>
 			</div>
 			<div class="mt-3">
-				<textarea class="form-control" style="height: 160px; width:300px;" placeholder="내용을 입력해주세요."></textarea>
+				<textarea id="content" class="form-control" style="height: 160px; width:300px;" placeholder="내용을 입력해주세요."></textarea>
 			</div>
 			<button id="writeBtn" class="btn btn-block text-white mt-2">게시</button>
 		</div>	<%-- 프로필, 내가 적을 문구 영역 종료 --%>
@@ -58,7 +58,7 @@ $(document).ready(function() {
 		// validation 
 		let content = $('#content').val();
 		
-		if (content.length == '') {
+		if (content == '') {
 			alert("내용을 입력해주세요");
 			return;
 		}

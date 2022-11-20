@@ -29,4 +29,6 @@ public interface LikeDAO {
 	// 좋아요 개수
 	public int selectLikeCountByPostId(int postId);
 	
+	// 게시글 삭제
+	public void deleteLikeByPostId(int postId);
 }

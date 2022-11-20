@@ -19,7 +19,7 @@
 				<%-- 글쓴이, 더보기 --%>
 				<div class="p-2 d-flex justify-content-between">
 					<%-- 글쓴이 --%>
-					<a href="#">
+					<a href="/user/profile_view">
 						<img src="https://media.istockphoto.com/id/1168022051/ko/%EB%B2%A1%ED%84%B0/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%98%90%EB%8A%94-%EC%9D%B8%EC%A6%9D-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%82%AC%EB%9E%8C-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=usGMDDtBu7aYOubS3rP2Ot5-vzjMHik905IMJpJa7Ps=" width="25px" alt="기본 유저사진">
 						<span class="font-weight-bold text-dark ml-1">${card.user.loginId}</span>
 					</a>
@@ -243,6 +243,39 @@ $(document).ready(function() {
 			}
 			, error:function(e) {
 				alert("댓글 삭제에 실패했습니다. 관리자에게 문의해주세요");
+			}
+		});
+	});
+	
+	// 게시글 삭제
+	$('.more-btn').on('click', function(e) {
+		e.preventDefault();
+		
+		let postId = $(this).data('post-id');
+		
+		$('#more-modal').data('post-id', postId);
+	});
+	
+	// modal 삭제 클릭
+	$('#more-modal #delPostBtn').on('click', function(e) {
+		e.preventDefault();
+		
+		let postId = $('#more-modal').data('post-id');
+		
+		// ajax 글삭제
+		$.ajax({
+			type:"delete"
+			, url:"/post/delete"
+			, data: {"postId":postId}
+			, success: function(data) {
+				if (data.code == 100) {
+					location.reload();
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error: function(e) {
+				alert("게시글 삭제에 실패했습니다. 관리자에게 문의해주세요.");
 			}
 		});
 	});

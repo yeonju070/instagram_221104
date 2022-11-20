@@ -5,58 +5,64 @@
 	<insert id="insertComment" parameterType="map">
 		INSERT INTO `comment`
 		(
-		`userId`
-		, `postId`
-		, `content`
-		, `createdAt`
-		, `updatedAt`
+			`userId`
+			,`postId`
+			,`content`
+			,`createdAt`
+			,`updatedAt`
 		)
 		VALUES
 		(
-		#{userId}
-		, #{postId}
-		, #{content}
-		, NOW()
-		, NOW()
+			#{userId}
+			,#{postId}
+			,#{content}
+			,NOW()
+			,NOW()
 		)
 	</insert>
 
 	<select id="selectCommentListByPostId" parameterType="int"
 		resultType="com.instagram.comment.model.Comment">
 		SELECT
-		`id`
-		,`userId`
-		, `postId`
-		, `content`
-		, `createdAt`
-		,
-		`updatedAt`
+			`id`
+			,`userId`
+			,`postId`
+			,`content`
+			,`createdAt`
+			,`updatedAt`
 		FROM
-		`comment`
+			`comment`
 		WHERE
-		`postId` = #{postId}
+			`postId` = #{postId}
 	</select>
 
 	<delete id="deleteCommentByCommentIdAndUserId" parameterType="map">
 		DELETE
 		FROM
-		`comment`
+			`comment`
 		WHERE
-		`id` = #{commentId}
-		AND `userId`
-		= #{userId}
+			`id` = #{commentId}
+			AND `userId` = #{userId}
 	</delete>
 
 	<select id="selectCommentByPostIdOrUserId" parameterType="map"
 		resultType="int">
 		SELECT
-		COUNT(1)
+			COUNT(1)
 		FROM
-		`comment`
+			`comment`
 		WHERE
-		`postId` = #{postId}
+			`postId` = #{postId}
 		<if test="userId != null">
 			AND `userId` = #{userId}
 		</if>
 	</select>
+	
+	<delete id="deleteCommentByPostId" parameterType="int">
+		DELETE
+		FROM
+			`comment`
+		WHERE
+			`postId` = #{postId}
+	</delete>
 </mapper>

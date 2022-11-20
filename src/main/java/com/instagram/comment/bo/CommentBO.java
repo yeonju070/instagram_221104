@@ -62,4 +62,9 @@ public class CommentBO {
 	public int getCommentByPostIdOrUserId(int postId, Integer userId) {
 		return commentDAO.selectCommentByPostIdOrUserId(postId, userId);
 	}
+	
+	// 게시글 삭제
+	public void deleteCommentByPostId(int postId) {
+		commentDAO.deleteCommentByPostId(postId);
+	}
 }

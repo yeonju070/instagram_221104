@@ -19,6 +19,7 @@ public interface PostDAO {
 	// 게시글 list 가져오는 메소드
 	public List<Post> selectPostList();
 	
+	// 기존 게시글 가져오기
 	public Post selectPostById(int id);
 	
 	// 게시글 수정 메소드
@@ -27,4 +28,9 @@ public interface PostDAO {
 			@Param("userId") int userId,
 			@Param("content") String content,
 			@Param("imagePath") String imagePath);
+	
+	// 게시글 삭제 메소드
+	public void deletePostByPostIdAndUserId(
+			@Param("postId") int postId,
+			@Param("userId") int userId);
 }
