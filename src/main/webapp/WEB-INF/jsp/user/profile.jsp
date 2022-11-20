@@ -12,7 +12,7 @@
 			<div class="user-profile-detail-box ml-5">
 				<div class="d-flex justify-content-between">
 					<h3 class="loginId">${userLoginId}</h3>
-					<a class="btn border">프로필 편집</a>
+					<a href="/user/profile_detail_view" class="btn border">프로필 편집</a>
 				</div>
 				
 				<div class="d-flex justify-content-between mt-2">

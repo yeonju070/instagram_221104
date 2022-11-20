@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.instagram.comment.bo.CommentBO;
+import com.instagram.comment.model.CommentView;
 import com.instagram.like.bo.LikeBO;
 import com.instagram.post.bo.PostBO;
 import com.instagram.post.model.Post;
@@ -25,18 +27,22 @@ public class TimelineBO {
 	@Autowired
 	private LikeBO likeBO;
 	
+	@Autowired
+	private CommentBO commentBO;
+	
 	public List<CardView> generateCardList(Integer userId) {
 		List<CardView> cardViewList = new ArrayList<>();
-		// 글 목록 가져오기
+		
+		// 게시글 목록 가져오기
 		List<Post> postList = postBO.getPostList();
 		
 		for (Post post : postList) {
 			CardView card = new CardView();
-			// 게시글 정보
-			post = postBO.getPostByPostId(post.getId());
+			
+			// 게시글에 대한 정보
 			card.setPost(post);
 			
-			// 글쓴이 정보
+			// 글쓴이의 대한 정보
 			User user = userBO.getUserById(post.getUserId());
 			card.setUser(user);
 			
@@ -50,11 +56,13 @@ public class TimelineBO {
 			
 			// 좋아요 개수
 			card.setLikeCount(likeBO.getLikeCountByPostIdOrUserId(post.getId(), null));
+
+			// 게시글 하나의 댓글 목록
+			List<CommentView> commentList = commentBO.generateCommentViewListByPostId(post.getId());
+			card.setCommentList(commentList);
 			
-			// 카드 리스트에 채우기
 			cardViewList.add(card);
 		}
-		
 		return cardViewList;
 	}
 }

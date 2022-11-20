@@ -26,7 +26,8 @@
 			, NOW()
 		)
 	</insert>
-	<select id="existLoginId" parameterType="String" resultType="int">
+	
+	<select id="existLoginId" parameterType="string" resultType="int">
 		SELECT
 			COUNT(1)
 		FROM
@@ -34,6 +35,7 @@
 		WHERE
 			`loginId` = #{loginId}
 	</select>
+	
 	<select id="selectUserByLoginIdPassword" parameterType="map"
 		resultType="com.instagram.user.model.User">
 		SELECT
@@ -52,6 +54,7 @@
 			`loginId` = #{loginId}
 			AND `password` = #{password}
 	</select>
+	
 	<select id="selectUserById" parameterType="int" resultType="com.instagram.user.model.User">
 		SELECT
 			`id`
@@ -67,5 +70,20 @@
 			`user`
 		WHERE
 			`id` = #{id}
+	</select>
+	<select id="selectUserList" parameterType="map"
+		resultType="com.instagram.user.model.User">
+		SELECT
+			`id`
+			,`loginId`
+			,`password`
+			,`phoneNumber`
+			,`imagePath`
+			,`name`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`user`
 	</select>
 </mapper>

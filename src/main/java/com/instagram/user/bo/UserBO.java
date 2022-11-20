@@ -1,5 +1,8 @@
 package com.instagram.user.bo;
 
+import java.util.List;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +11,8 @@ import com.instagram.user.model.User;
 
 @Service
 public class UserBO {
+	
+	User[] users = new User[1000];
 	
 	@Autowired
 	private UserDAO userDAO;
@@ -30,5 +35,30 @@ public class UserBO {
 	// 유저 정보를 가져오는 객체
 	public User getUserById(int id) {
 		return userDAO.selectUserById(id);
+	}
+	
+	// 유저 추천 리스트
+	public List<User> getUserList() {
+		
+		int userIndex = 0;
+		
+		for (int i = 0; i < 1000; i++) {
+			User user = new User();
+			user.setName("userName");
+			user.setId(i + 1);
+			users[userIndex++] = user;
+		}
+		
+		return userDAO.selectUserList();
+	}
+	
+	public void mix() {
+		Random rnd = new Random();
+		for (int i = 0; i < 1000; i++) {
+			int rndIndex = rnd.nextInt(4);
+			User user = users[0];
+			users[0] = users[rndIndex];
+			users[rndIndex] = user;
+		}
 	}
 }

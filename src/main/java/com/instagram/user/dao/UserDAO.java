@@ -1,5 +1,7 @@
 package com.instagram.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -25,4 +27,7 @@ public interface UserDAO {
 	
 	// 유저 정보 가져오는 객체
 	public User selectUserById(int id);
+	
+	// 유저 추천 리스트
+	public List<User> selectUserList();
 }

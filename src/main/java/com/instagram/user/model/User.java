@@ -3,6 +3,7 @@ package com.instagram.user.model;
 import java.util.Date;
 
 public class User {
+	
 	private int id;
 	private String loginId;
 	private String password;

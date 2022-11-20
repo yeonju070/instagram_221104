@@ -60,4 +60,18 @@ public class UserController {
 		model.addAttribute("viewName", "user/profile");
 		return "template/layout";
 	}
+	
+	// 유저 프로필 디테일 화면
+	@RequestMapping("/profile_detail_view")
+	public String profileDetailView(
+			Model model,
+			HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId == null) {
+			return "redirect:/user/sign_in_view";
+		}
+		
+		model.addAttribute("viewName", "user/profileDetail");
+		return "template/layout";
+	}
 }
