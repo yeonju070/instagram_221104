@@ -28,7 +28,7 @@ public class CommentRestController {
 			HttpSession session) {
 		
 		Map<String, Object> result = new HashMap<>();
-		result.put("result", "success");
+		result.put("code", 100);
 		
 		Integer userId = (Integer) session.getAttribute("userId");
 		if (userId == null) {

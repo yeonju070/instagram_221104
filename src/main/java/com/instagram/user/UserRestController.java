@@ -37,7 +37,7 @@ public class UserRestController {
 
 		Map<String, Object> result = new HashMap<>();
 		if (row == 1) {
-			result.put("result", "success");
+			result.put("code", 100);
 		} else {
 			result.put("error", "입력 실패");
 		}

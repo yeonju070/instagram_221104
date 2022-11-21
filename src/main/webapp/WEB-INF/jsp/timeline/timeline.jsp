@@ -63,18 +63,22 @@
 					<%-- 댓글 목록 --%>
 					<c:forEach items="${card.commentList}" var="commentView">
 					<div class="card-comment my-2 ml-3">
-						<c:if test="${not empty commentView.user.loginId}">
-						<span class="font-weight-bold">${commentView.user.loginId}:</span>
+						<%-- 댓글이 없으면 없음 출력 --%>
+						<c:if test="${commentView.comment.content == null}">
+							<span class="font-weight-bold">댓글없음</span>
 						</c:if>
-						<c:if test="${empty commentView.user.loginId}">
-						<span class="font-weight-bold">댓글없음</span>
+						<%-- 댓글이 존재하면 해당 댓글 출력 --%>
+						<c:if test="${commentView.comment.content != null}">
+							<span class="font-weight-bold">${commentView.user.loginId}:</span>
+							<span>${commentView.comment.content}</span>
 						</c:if>
-						<span>${commentView.comment.content}</span>
 						
 						<%-- 댓글 삭제 버튼 --%>
+						<c:if test="${not empty userLoginId}">
 						<a href="#" class="comment-delBtn" data-comment-id="${commentView.comment.id}">
 							<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
 						</a>
+						</c:if>
 					</div>
 					</c:forEach>
 					<%-- 댓글 쓰기 --%>

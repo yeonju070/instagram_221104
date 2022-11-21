@@ -71,8 +71,7 @@
 		WHERE
 			`id` = #{id}
 	</select>
-	<select id="selectUserList" parameterType="map"
-		resultType="com.instagram.user.model.User">
+	<select id="selectUserList" resultType="com.instagram.user.model.User">
 		SELECT
 			`id`
 			,`loginId`

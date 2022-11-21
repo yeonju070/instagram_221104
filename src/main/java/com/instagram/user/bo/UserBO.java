@@ -1,18 +1,18 @@
 package com.instagram.user.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import com.instagram.user.dao.UserDAO;
 import com.instagram.user.model.User;
 
 @Service
 public class UserBO {
-	
-	User[] users = new User[1000];
 	
 	@Autowired
 	private UserDAO userDAO;
@@ -38,27 +38,46 @@ public class UserBO {
 	}
 	
 	// 유저 추천 리스트
-	public List<User> getUserList() {
+	public List<User> getRecommentUserList(int userId) {
 		
-		int userIndex = 0;
+		// 유저 리스트
+		List<User> userList = userDAO.selectUserList();
 		
-		for (int i = 0; i < 1000; i++) {
-			User user = new User();
-			user.setName("userName");
-			user.setId(i + 1);
-			users[userIndex++] = user;
+		// 유저 리스트가 비어있을 경우
+		if (ObjectUtils.isEmpty(userList)) {
+			return new ArrayList<>();
 		}
 		
-		return userDAO.selectUserList();
-	}
-	
-	public void mix() {
+		// 나 자신은 리스트에서 제거
+		for (int i = 0; i < userList.size(); i++) {
+			if (userList.get(i).getId() == userId) {
+				userList.remove(i);
+				return userList;
+			}
+		}
+		
+		// 유저 랜덤 추천
 		Random rnd = new Random();
-		for (int i = 0; i < 1000; i++) {
-			int rndIndex = rnd.nextInt(4);
-			User user = users[0];
-			users[0] = users[rndIndex];
-			users[rndIndex] = user;
+	
+		for (int i = 0; i < 50; i++) {
+			int rndIndex = rnd.nextInt(userList.size());
+			User tempUser = userList.get(0);
+			userList.set(0, userList.get(rndIndex));	// 0번째 index에 랜덤 index입력
+			userList.set(rndIndex, tempUser);			// 랜덤으로 섞인 index에 tempUser를 넣는다.
+			
 		}
+		
+		// 유저가 4명이상 리스트에 담겨있는지 체크
+		if (userList.size() < 4) {
+			return userList;
+		}
+		
+		// 4명의 유저만 추천
+		List<User> userRecommentList = new ArrayList<>();
+		for (int i = 0; i < 4; i++) {
+			userRecommentList.add(userList.get(i));
+		}
+		
+		return userRecommentList;
 	}
 }

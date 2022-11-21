@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.instagram.timeline.bo.TimelineBO;
 import com.instagram.timeline.model.CardView;
+import com.instagram.user.bo.UserBO;
+import com.instagram.user.model.User;
 
 @RequestMapping("/timeline")
 @Controller
@@ -18,6 +20,9 @@ public class TimelineController {
 	
 	@Autowired
 	private TimelineBO timelineBO;
+	
+	@Autowired
+	private UserBO userBO;
 	
 	//@Autowired
 	//private UserBO userBO;
@@ -34,10 +39,9 @@ public class TimelineController {
 		}
 		
 		List<CardView> cardViewList = timelineBO.generateCardList(userId);
+		List<User> userList = userBO.getRecommentUserList(userId);
 		
-//		List<User> userList = userBO.getUserList();
-//		
-//		model.addAttribute("userList", userList);
+		model.addAttribute("userList", userList);
 		model.addAttribute("cardList", cardViewList);
 		model.addAttribute("viewName", "timeline/timeline");
 		return "template/layout";

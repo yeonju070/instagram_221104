@@ -33,7 +33,7 @@ public class CommentBO {
 	// 가공된 댓글 객체
 	public List<CommentView> generateCommentViewListByPostId(int postId) {
 		
-		// 결과
+		// 결과물
 		List<CommentView> commentViewList = new ArrayList<>();
 		
 		// 댓글 목록 가져오기

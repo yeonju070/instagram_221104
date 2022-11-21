@@ -26,7 +26,7 @@
 		</div>
 		<div class="user-profile-content col-9 ml-2">
 			<div>
-				<span>사용자 이름</span>
+				<span class="userLoginId-font-size">${userLoginId}</span>
 			</div>
 			<div>
 				<a href="#" class="profile-imagePath-btn" data-toggle="modal" data-target="#profile-modal">
