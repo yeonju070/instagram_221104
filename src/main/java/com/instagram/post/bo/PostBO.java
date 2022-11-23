@@ -42,6 +42,11 @@ public class PostBO {
 		return postDAO.insertPost(userId, content, imagePath);
 	}
 	
+	// postDetail에 뿌릴 화면
+	public List<Post> getPostListByPostIdAndUserId(int postId, int userId) {
+		return postDAO.selectPostByPostIdAndUserId(postId, userId);
+	}
+	
 	// timelineBO에 보낼 post의 리스트
 	public List<Post> getPostList() {
 		return postDAO.selectPostList();

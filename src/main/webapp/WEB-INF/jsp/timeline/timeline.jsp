@@ -20,11 +20,11 @@
 				<div class="p-2 d-flex justify-content-between">
 					<%-- 글쓴이 --%>
 					<a href="/user/profile_view">
-						<img src="https://media.istockphoto.com/id/1168022051/ko/%EB%B2%A1%ED%84%B0/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%98%90%EB%8A%94-%EC%9D%B8%EC%A6%9D-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%82%AC%EB%9E%8C-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=usGMDDtBu7aYOubS3rP2Ot5-vzjMHik905IMJpJa7Ps=" width="25px" alt="기본 유저사진">
+						<img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="25px" alt="기본 유저사진">
 						<span class="font-weight-bold text-dark ml-1">${card.user.loginId}</span>
 					</a>
 					<%-- 더보기 --%>
-					<a href="#" class="more-btn" data-toggle="modal" data-target="#more-modal" data-post-id="${card.post.id}" data-content-id="${card.post.content}">
+					<a href="#" class="more-btn" data-toggle="modal" data-target="#more-modal" data-post-id="${card.post.id}" data-content-id="${card.post.content}" data-user-id="${card.user.id}">
 						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/330px-Hamburger_icon.svg.png" width="25">
 					</a>
 				</div>
@@ -64,11 +64,11 @@
 					<c:forEach items="${card.commentList}" var="commentView">
 					<div class="card-comment my-2 ml-3">
 						<%-- 댓글이 없으면 없음 출력 --%>
-						<c:if test="${commentView.comment.content == null}">
-							<span class="font-weight-bold">댓글없음</span>
+						<c:if test="${empty commentView}">
+							<div class="font-weight-bold">댓글없음</div>
 						</c:if>
 						<%-- 댓글이 존재하면 해당 댓글 출력 --%>
-						<c:if test="${commentView.comment.content != null}">
+						<c:if test="${!empty commentView}">
 							<span class="font-weight-bold">${commentView.user.loginId}:</span>
 							<span>${commentView.comment.content}</span>
 						</c:if>
@@ -99,7 +99,7 @@
 			<%-- 내 프로필 --%>
 			<div class="d-flex align-items-center mb-3">
 				<a href="/user/profile_view">
-					<img src="https://media.istockphoto.com/id/1168022051/ko/%EB%B2%A1%ED%84%B0/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%98%90%EB%8A%94-%EC%9D%B8%EC%A6%9D-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%82%AC%EB%9E%8C-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=usGMDDtBu7aYOubS3rP2Ot5-vzjMHik905IMJpJa7Ps=" width="50px" alt="기본 유저사진">
+					<img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="45px" alt="기본 유저사진">
 					<span class="ml-2 font-weight-bold">${userLoginId}</span>
 				</a>
 			</div>
@@ -113,7 +113,7 @@
 			<div class="another-user mt-3 d-flex align-items-center justify-content-between">
 				<div>
 					<a href="/user/profile_view">
-						<img src="https://media.istockphoto.com/id/1168022051/ko/%EB%B2%A1%ED%84%B0/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%98%90%EB%8A%94-%EC%9D%B8%EC%A6%9D-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%82%AC%EB%9E%8C-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=usGMDDtBu7aYOubS3rP2Ot5-vzjMHik905IMJpJa7Ps=" width="50px" alt="기본 유저사진">
+						<img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="45px" alt="기본 유저사진">
 						<span class="ml-2 text-dark font-weight-bold">${user.loginId}</span>
 					</a>
 				</div>
@@ -166,6 +166,10 @@ $(document).ready(function() {
 		
 		let postId = $('#more-modal').data('post-id');	// modal에 게시글번호를 가져온다.
 		
+		if (postId == '') {
+			alert("수정할 게시글이 없습니다.");
+			return;
+		}
 		location.href = "/post/post_detail_view?postId=" + postId;
 	});
 	
@@ -251,15 +255,14 @@ $(document).ready(function() {
 		});
 	});
 	
-	// 게시글 삭제
-	$('.more-btn').on('click', function(e) {
-		e.preventDefault();
-		
-		let postId = $(this).data('post-id');
-		
-		$('#more-modal').data('post-id', postId);
-	});
-	
+	// 게시글 삭제 -> modal에 postId를 심는 작업은 script 맨 처음에 이미 한 작업이기 때문에 생략
+	//$('.more-btn').on('click', function(e) {
+	//	e.preventDefault();
+	//	
+	//	let postId = $(this).data('post-id');	// 게시글의 글번호를 가져온다.
+	//	
+	//	$('#more-modal').data('post-id', postId);
+	//});
 	// modal 삭제 클릭
 	$('#more-modal #delPostBtn').on('click', function(e) {
 		e.preventDefault();
@@ -286,10 +289,28 @@ $(document).ready(function() {
 	
 	// 팔로우 버튼 클릭
 	$('.follow-btn').on('click', function() {
-
+		
 		// 유저 id
-		let userId = $(this).data("user-id");
-		alert(userId);
+		let followeeId = $(this).data("user-id");
+		
+		if (followeeId == '') {
+			alert("해당 유저가 존재하지않습니다.");
+			return;
+		}
+		
+		$.ajax({
+			url:"/follow/" + followeeId	
+			,success:function(data) {
+				if (data.code == 100) {
+					location.reload(true);
+				} else if (data.code == 300) {
+					alert("로그인 후 이용해주세요.");
+				}
+			}
+			, error:function(e) {
+				alert("팔로우에 실패했습니다. 관리자에게 문의해주세요.");
+			}
+		});
 	});
 });
 </script>

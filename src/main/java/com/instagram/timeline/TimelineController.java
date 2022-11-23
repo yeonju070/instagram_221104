@@ -24,9 +24,6 @@ public class TimelineController {
 	@Autowired
 	private UserBO userBO;
 	
-	//@Autowired
-	//private UserBO userBO;
-	
 	// 타임라인 화면
 	@RequestMapping("/timeline_view")
 	public String timelineView(

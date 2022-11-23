@@ -4,14 +4,12 @@
 <div class="d-flex justify-content-center align-items-center">
 	<div class="post-create-box d-flex align-items-center">
 		<%-- 프로필, 내가 적을 문구 영역 종료 --%>
-		<c:forEach items="${cardList}" var="card">
+		<c:forEach items="${postList}" var="post">
 		<div class="file-upload">
 			<input type="file" id="file" class="d-none" accept=".gif, .jpg, .png, .jpeg">
-				<c:if test="${not empty card.post.imagePath}">
-					<a href="#" id="fileUploadBtn">
-						<img src="${card.post.imagePath}"  alt="기본 이미지" width="350px" height="300px">
-					</a>
-				</c:if>
+				<a href="#" id="fileUploadBtn">
+					<img src="${post.imagePath}"  alt="기본 이미지" width="350px" height="300px">
+				</a>
 			<%-- 업로드 할 파일 이름이 임시로 저장될 공간 --%>
 			<div id="fileName"></div>
 		</div>
@@ -22,7 +20,7 @@
 				<h4 class="ml-3">${userLoginId}</h4>
 			</div>
 			<div class="mt-3">
-				<textarea class="form-control" style="height: 160px; width:300px;" placeholder="내용을 입력해주세요."></textarea>
+				<textarea class="form-control" style="height: 160px; width:300px;" placeholder="내용을 입력해주세요.">${post.content}</textarea>
 			</div>
 			<button id="writeBtn" class="btn btn-block text-white mt-2" data-post-id="${card.post.id}">수정</button>
 		</div>	<%-- 프로필, 내가 적을 문구 영역 종료 --%>
@@ -63,7 +61,7 @@ $(document).ready(function() {
 		let content = $('#content').val();
 		let file = $('#file').val();
 		
-		if (content.length == '') {
+		if (content == '') {
 			alert("내용을 입력해주세요");
 			return;
 		}

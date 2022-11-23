@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import com.instagram.follow.bo.FollowBO;
 import com.instagram.user.dao.UserDAO;
 import com.instagram.user.model.User;
 
@@ -16,6 +17,9 @@ public class UserBO {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private FollowBO followBO;
 	
 	// 회원가입
 	public int addUser(String email, String name, String loginId, String password) {
@@ -52,7 +56,13 @@ public class UserBO {
 		for (int i = 0; i < userList.size(); i++) {
 			if (userList.get(i).getId() == userId) {
 				userList.remove(i);
-				return userList;
+			}
+		}
+		
+		// 팔로우 한 유저 레스트에서 제거
+		for (int i = 0; i < userList.size(); i++) {
+			if (followBO.checkFollow(userId, userList.get(i).getId()) == true) {
+				userList.remove(i);
 			}
 		}
 		
@@ -64,7 +74,6 @@ public class UserBO {
 			User tempUser = userList.get(0);
 			userList.set(0, userList.get(rndIndex));	// 0번째 index에 랜덤 index입력
 			userList.set(rndIndex, tempUser);			// 랜덤으로 섞인 index에 tempUser를 넣는다.
-			
 		}
 		
 		// 유저가 4명이상 리스트에 담겨있는지 체크
@@ -77,7 +86,7 @@ public class UserBO {
 		for (int i = 0; i < 4; i++) {
 			userRecommentList.add(userList.get(i));
 		}
-		
+			
 		return userRecommentList;
 	}
 }

@@ -16,6 +16,11 @@ public interface PostDAO {
 			@Param("content") String content, 
 			@Param("imagePath") String imagePath);
 	
+	// postDetail에 뿌릴 화면
+	public List<Post> selectPostByPostIdAndUserId(
+			@Param("postId") int postId,
+			@Param("userId") int userId);
+	
 	// 게시글 list 가져오는 메소드
 	public List<Post> selectPostList();
 	
