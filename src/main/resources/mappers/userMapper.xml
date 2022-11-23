@@ -11,6 +11,7 @@
 			,`imagePath`
 			,`name`
 			,`email`
+			,`introduce`
 			,`createdAt`
 			,`updatedAt`
 		)
@@ -22,6 +23,7 @@
 			, NULL
 			, #{name}
 			, #{email}
+			, NULL
 			, NOW()
 			, NOW()
 		)
@@ -46,6 +48,7 @@
 			,`imagePath`
 			,`name`
 			,`email`
+			,`introduce`
 			,`createdAt`
 			,`updatedAt`
 		FROM
@@ -55,7 +58,8 @@
 			AND `password` = #{password}
 	</select>
 	
-	<select id="selectUserById" parameterType="int" resultType="com.instagram.user.model.User">
+	<select id="selectUserById" parameterType="int"
+		resultType="com.instagram.user.model.User">
 		SELECT
 			`id`
 			,`loginId`
@@ -64,6 +68,7 @@
 			,`imagePath`
 			,`name`
 			,`email`
+			,`introduce`
 			,`createdAt`
 			,`updatedAt`
 		FROM
@@ -80,6 +85,7 @@
 			,`imagePath`
 			,`name`
 			,`email`
+			,`introduce`
 			,`createdAt`
 			,`updatedAt`
 		FROM

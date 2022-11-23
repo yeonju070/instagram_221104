@@ -71,6 +71,45 @@ $(document).ready(function() {
 	$('#signUpBtn').on('click', function(e) {
 		e.preventDefault();
 		
-		alert("asdf");
+		// validation
+		let email = $('input[name=email]').val().trim();
+		let name = $('input[name=name]').val().trim();
+		let loginId = $('input[name=loginId]').val().trim();
+		let password = $('input[name=password]').val().trim();
+		
+		if (email == '') {
+			alert("이메일 주소를 입력하세요.");
+			return;
+		}
+
+		if (name == '') {
+			alert("이름을 입력하세요.");
+			return;
+		}
+
+		if (loginId == '') {
+			alert("아이디를 입력하세요.");
+			return;
+		}
+		
+		if (password == '') {
+			alert("비밀번호를 입력하세요.");
+			return;
+		}
+		
+		// ajax
+		let url = $('#signUpForm').attr("action");
+		let params = $('#signUpForm').serialize();
+		
+		$.post(url, params)
+		.done(function(data) {
+			if (data.code == 100) {
+				alert("가입을 환영합니다!!! 로그인을 해주세요.");				
+				location.href="/user/sign_in_view";
+			} else {
+				alert("가입에 실패했습니다. 다시 시도해주세요.");
+			}
+		}); 
+	});
 });
 </script>

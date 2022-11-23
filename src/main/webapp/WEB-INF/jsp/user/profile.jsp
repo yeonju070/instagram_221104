@@ -6,9 +6,10 @@
 		<%-- 프로필 영역 --%>
 		<div class="profile-detail-box d-flex">
 			<div class="profile-imagePath d-flex justify-content-center">
-				<img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="160px" height="160px" alt="기본 유저사진">
+				<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="150px" height="150px" alt="기본 유저사진">
 			</div>
 			
+			<%-- 유저 프로필 정보(프로필 사진, 게시물, 팔로워 등등..) 영역 --%>
 			<div class="user-profile-detail-box mt-2 ml-5">
 				<div class="d-flex justify-content-start">
 					<span id="ProfileloginId">${userLoginId}</span>
@@ -26,8 +27,9 @@
 				<div class="mt-2">
 					<textarea class="form-control" style="height: 55px; width:300px;" placeholder="나의 소개가 없습니다."></textarea>
 				</div>
-			</div>
+			</div>	<%-- 유저 프로필 정보(프로필 사진, 게시물, 팔로워 등등..) 영역 종료 --%>
 		</div>	<%-- 프로필 영역 종료 --%>
+		
 		<%-- 유저 게시글 영역 --%>
 		<div class="user-post-box m-3">
 			<div>나의 게시물</div>

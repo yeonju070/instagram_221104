@@ -66,11 +66,15 @@ public class UserController {
 	public String profileDetailView(
 			Model model,
 			HttpSession session) {
+		
 		Integer userId = (Integer)session.getAttribute("userId");
 		if (userId == null) {
 			return "redirect:/user/sign_in_view";
 		}
 		
+		List<CardView> cardViewList = timelineBO.generateCardList(userId);
+		
+		model.addAttribute("cardList", cardViewList);
 		model.addAttribute("viewName", "user/profileDetail");
 		return "template/layout";
 	}

@@ -7,7 +7,7 @@
 		<c:forEach items="${postList}" var="post">
 		<div class="file-upload">
 			<input type="file" id="file" class="d-none" accept=".gif, .jpg, .png, .jpeg">
-				<a href="#" id="fileUploadBtn">
+				<a href="#" id="fileUpdateBtn">
 					<img src="${post.imagePath}"  alt="기본 이미지" width="350px" height="300px">
 				</a>
 			<%-- 업로드 할 파일 이름이 임시로 저장될 공간 --%>
@@ -16,25 +16,27 @@
 		<%-- 프로필, 내가 적을 문구 --%>
 		<div class="post-user-info ml-3">
 			<div class="d-flex justify-content-start align-items-center ">
-				<img src="https://media.istockphoto.com/id/1168022051/ko/%EB%B2%A1%ED%84%B0/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%98%90%EB%8A%94-%EC%9D%B8%EC%A6%9D-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%82%AC%EB%9E%8C-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=usGMDDtBu7aYOubS3rP2Ot5-vzjMHik905IMJpJa7Ps=" width="50px" alt="기본 유저사진">
+				<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="50px" alt="기본 유저사진">
 				<h4 class="ml-3">${userLoginId}</h4>
 			</div>
 			<div class="mt-3">
-				<textarea class="form-control" style="height: 160px; width:300px;" placeholder="내용을 입력해주세요.">${post.content}</textarea>
+				<textarea class="form-control" id="content" style="height: 160px; width:300px;" placeholder="내용을 입력해주세요.">${post.content}</textarea>
 			</div>
-			<button id="writeBtn" class="btn btn-block text-white mt-2" data-post-id="${card.post.id}">수정</button>
+			<button id="postUpdateBtn" class="btn btn-block text-white mt-2" data-post-id="${post.id}">수정</button>
 		</div>	<%-- 프로필, 내가 적을 문구 영역 종료 --%>
 		</c:forEach>
 	</div>
 </div>
 <script>
 $(document).ready(function() {
-	$('#fileUploadBtn').on('click', function(e) {
+	// 파일 업로드(사진 클릭)
+	$('#fileUpdateBtn').on('click', function(e) {
 		e.preventDefault();
 		
 		$('#file').click();
 	});
 	
+	// 파일 확장자 체크
 	$('#file').on('change', function(e) {
 		
 		let fileName = e.target.files[0].name;
@@ -55,18 +57,22 @@ $(document).ready(function() {
 		$('#fileName').text(fileName);
 	});
 	
-	$('#writeBtn').on('click',function() {
+	$('#postUpdateBtn').on('click', function() {
 		
-		// validation
 		let content = $('#content').val();
 		let file = $('#file').val();
 		
+		// validation
 		if (content == '') {
 			alert("내용을 입력해주세요");
 			return;
 		}
 		
-		// 이미지 유효성 검사
+		if (file == '') {
+			alert('파일을 업로드 해주세요');
+			return;
+		}
+		
 		if (file != '') {
 			console.log(file.split('.').pop());
 			let ext = file.split('.').pop().toLowerCase();
@@ -77,7 +83,6 @@ $(document).ready(function() {
 			}
 		}
 		
-		// 폼태그에 자바스크립트를 심는다.
 		let postId = $(this).data('post-id');
 		
 		let formData = new FormData();
@@ -87,23 +92,22 @@ $(document).ready(function() {
 		
 		// ajax
 		$.ajax({
-			type:"put"
-			,url:"/post/update"
-			,data:formData
-			,enctype:"multipart/form-data"
-			,processData:false
-			,contentType:false
+			type:"PUT"
+			, url:"/post/update"
+			, data:formData
+			, enctype:"multipart/form-data"
+			, processData:false
+			, contentType:false
 			
-			// response
 			, success:function(data) {
 				if (data.code == 100) {
-					alert("게시글이 수정되었습니다.");
+					alert("게시글을 수정하였습니다.");
 					location.href = "/timeline/timeline_view";
 				} else {
 					alert(data.errorMessage);
 				}
 			}
 		});
-	})
+	});
 });
 </script>

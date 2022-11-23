@@ -25,7 +25,7 @@ public interface UserDAO {
 			@Param("loginId") String loginId,
 			@Param("password") String password);
 	
-	// 유저 정보를 가져오는 객체
+	// 유저 정보를 가져오는 메소드
 	public User selectUserById(int id);
 	
 	// 유저 추천 리스트

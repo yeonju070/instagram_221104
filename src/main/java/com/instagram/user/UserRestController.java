@@ -27,19 +27,19 @@ public class UserRestController {
 	 */
 	@RequestMapping("/sign_up")
 	public Map<String, Object> signUp(
-			@RequestParam("loginId") String loginId,
-			@RequestParam("password") String password,
+			@RequestParam("email") String email,
 			@RequestParam("name") String name,
-			@RequestParam("email") String email) {
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password) {
 
 		String encryptPassword = EncryptUtils.md5(password);
-		int row = userBO.addUser(loginId, encryptPassword, name, email);
+		int row = userBO.addUser(email, name, loginId, encryptPassword);
 
 		Map<String, Object> result = new HashMap<>();
 		if (row == 1) {
 			result.put("code", 100);
 		} else {
-			result.put("error", "입력 실패");
+			result.put("error", "회원 가입에 실패했습니다. 다시 입력해주세요.");
 		}
 		return result;
 	}

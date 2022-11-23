@@ -20,7 +20,7 @@
 				<div class="p-2 d-flex justify-content-between">
 					<%-- 글쓴이 --%>
 					<a href="/user/profile_view">
-						<img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="25px" alt="기본 유저사진">
+						<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="25px" alt="기본 유저사진">
 						<span class="font-weight-bold text-dark ml-1">${card.user.loginId}</span>
 					</a>
 					<%-- 더보기 --%>
@@ -68,7 +68,7 @@
 							<div class="font-weight-bold">댓글없음</div>
 						</c:if>
 						<%-- 댓글이 존재하면 해당 댓글 출력 --%>
-						<c:if test="${!empty commentView}">
+						<c:if test="${not empty commentView}">
 							<span class="font-weight-bold">${commentView.user.loginId}:</span>
 							<span>${commentView.comment.content}</span>
 						</c:if>
@@ -99,7 +99,7 @@
 			<%-- 내 프로필 --%>
 			<div class="d-flex align-items-center mb-3">
 				<a href="/user/profile_view">
-					<img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="45px" alt="기본 유저사진">
+					<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="45px" alt="기본 유저사진">
 					<span class="ml-2 font-weight-bold">${userLoginId}</span>
 				</a>
 			</div>
@@ -113,7 +113,7 @@
 			<div class="another-user mt-3 d-flex align-items-center justify-content-between">
 				<div>
 					<a href="/user/profile_view">
-						<img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="45px" alt="기본 유저사진">
+						<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="45px" alt="기본 유저사진">
 						<span class="ml-2 text-dark font-weight-bold">${user.loginId}</span>
 					</a>
 				</div>
