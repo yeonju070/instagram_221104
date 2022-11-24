@@ -36,8 +36,7 @@
 </div>
 <script>
 $(document).ready(function() {
-	$('input[name=loginId]').on('change', function(e) {
-		e.preventDefault();
+	 $('input[name=loginId]').on('input', function() {
 		
 		let loginId = $('input[name=loginId]').val().trim();
 		
@@ -52,14 +51,14 @@ $(document).ready(function() {
 			url: "/user/is_duplicated_id",
 			data: {"loginId": loginId},
 			success: function(data) {
-				if (data.code == 100) {
+				if (data.result == true) {
 					$('#idCheckDuplicated').removeClass('d-none');
 					$('#idCheckLength').addClass('d-none');
 					$('#idCheckConfirm').addClass('d-none');
 				} else {
-					$('#idCheckDuplicated').addClass('d-none');
-					$('#idCheckLength').addClass('d-none');
 					$('#idCheckConfirm').removeClass('d-none');
+					$('#idCheckLength').addClass('d-none');
+					$('#idCheckDuplicated').addClass('d-none');
 				}
 			},
 			error: function(error) {

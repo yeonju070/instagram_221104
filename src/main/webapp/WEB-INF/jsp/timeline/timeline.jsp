@@ -192,7 +192,7 @@ $(document).ready(function() {
 				if (data.code == 100) {
 					location.reload(true);
 				} else {
-					alert(data.errorMessage);
+					alert("좋아요를 수행하는데 실패했습니다. 게시글을 다시 확인해주세요.");
 				}
 			}
 			, error:function(e) {
@@ -256,20 +256,13 @@ $(document).ready(function() {
 	});
 	
 	// 게시글 삭제 -> modal에 postId를 심는 작업은 script 맨 처음에 이미 한 작업이기 때문에 생략
-	//$('.more-btn').on('click', function(e) {
-	//	e.preventDefault();
-	//	
-	//	let postId = $(this).data('post-id');	// 게시글의 글번호를 가져온다.
-	//	
-	//	$('#more-modal').data('post-id', postId);
-	//});
 	// modal 삭제 클릭
 	$('#more-modal #delPostBtn').on('click', function(e) {
 		e.preventDefault();
 		
 		let postId = $('#more-modal').data('post-id');
 		
-		// ajax 글삭제
+		// ajax 게시글 삭제
 		$.ajax({
 			type:"delete"
 			, url:"/post/delete"

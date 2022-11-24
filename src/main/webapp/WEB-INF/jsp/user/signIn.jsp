@@ -58,7 +58,7 @@ $(document).ready(function() {
 			if (data.code == 100) {	
 				location.href="/timeline/timeline_view";
 			} else {
-				alert("id 또는 비밀번호가 맞지 않습니다.\n다시 입력해주세요.");
+				alert("아이디 또는 비밀번호가 맞지 않습니다.\n다시 입력해주세요.");
 			}
 		});
 	});

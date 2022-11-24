@@ -22,9 +22,7 @@ public class UserRestController {
 	@Autowired
 	private UserBO userBO;
 	
-	/*
-	 * 회원 가입
-	 */
+	// 회원 가입
 	@RequestMapping("/sign_up")
 	public Map<String, Object> signUp(
 			@RequestParam("email") String email,
@@ -39,11 +37,12 @@ public class UserRestController {
 		if (row == 1) {
 			result.put("code", 100);
 		} else {
-			result.put("error", "회원 가입에 실패했습니다. 다시 입력해주세요.");
+			result.put("errorMessage", "회원 가입에 실패했습니다. 다시 입력해주세요.");
 		}
 		return result;
 	}
 	
+	// 로그인
 	@RequestMapping("/sign_in")
 	public Map<String, Object> signIn(
 			@RequestParam("loginId") String loginId,
@@ -63,14 +62,13 @@ public class UserRestController {
 			session.setAttribute("userName", user.getName());	
 			session.setAttribute("userId", user.getId());	
 		} else {
-			result.put("error", "입력 실패");
+			result.put("errorMessage", "해당 유저가 존재하지않습니다. 다시 입력해주세요.");
 		}
+		
 		return result;
 	}
 	
-	/*
-	 * 로그인 중복 확인
-	 */
+	//로그인 중복 확인
 	@RequestMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(
 			@RequestParam("loginId") String loginId) {

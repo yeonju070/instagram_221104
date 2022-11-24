@@ -36,6 +36,7 @@ public class PostRestController {
 		
 		postBO.addPost(userId, userLoginId, content, file);
 		result.put("code", 100);
+		
 		return result;
 	}
 	
@@ -54,10 +55,10 @@ public class PostRestController {
 		
 		Map<String, Object> result = new HashMap<>();
 		if (row > 0) {
-			result.put("code", 100);	// 성공
+			result.put("code", 100);
 		} else {
-			result.put("code", 400);	// 실패
-			result.put("errorMessage", "글 수정에 실패했습니다.");
+			result.put("code", 400);
+			result.put("errorMessage", "게시글 수정에 실패했습니다.");
 		}
 		
 		return result;

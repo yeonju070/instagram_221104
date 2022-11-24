@@ -54,8 +54,7 @@ public class CommentRestController {
 		Integer userId = (Integer)session.getAttribute("userId");
 		if (userId == null) {
 			result.put("code", 300);
-			result.put("result", "error");
-			result.put("errorMessage", "로그인을 다시 해주세요.");
+			result.put("errorMessage", "로그인 후 이용해주세요.");
 			return result;
 		}
 		
