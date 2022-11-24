@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.instagram.common.FileManagerService;
 import com.instagram.follow.bo.FollowBO;
 import com.instagram.user.dao.UserDAO;
 import com.instagram.user.model.User;
@@ -15,11 +19,16 @@ import com.instagram.user.model.User;
 @Service
 public class UserBO {
 	
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private UserDAO userDAO;
 	
 	@Autowired
 	private FollowBO followBO;
+	
+	@Autowired
+	private FileManagerService fileManager;
 	
 	// 회원가입
 	public int addUser(String email, String name, String loginId, String password) {
@@ -36,7 +45,7 @@ public class UserBO {
 		return userDAO.selectUserByLoginIdPassword(loginId, password);
 	}
 	
-	// 유저 정보를 가져오는 객체
+	// 유저 정보를 가져오는 메소드
 	public User getUserById(int id) {
 		return userDAO.selectUserById(id);
 	}
@@ -88,5 +97,35 @@ public class UserBO {
 		}
 			
 		return userRecommentList;
+	}
+	
+	// 유저(나 자신) 프로필 사진 업로드
+	public int updateUserProfileImagePathByUserId(int userId, String userLoginId, MultipartFile file) {
+		
+		// 나의 정보 가져오기
+		User user = getUserById(userId);
+		if (user == null) {
+			log.warn("[add user] 추가할 프로필 이미지가 없습니다. userId:{}", userId);
+			return 0;
+		}
+		
+		String imagePath = null;
+		
+		if(file != null) {
+			// 성공시 추가
+			imagePath = fileManager.saveFile(userLoginId, file);
+			
+			// 성공시 기존 이미지 제거
+			if (imagePath != null && user.getImagePath() != null) {
+				fileManager.deleteFile(user.getImagePath());
+			}
+		}
+		
+		return userDAO.updateUserProfileImagePathByUserId(userId, imagePath);
+	}
+	
+	// profileDetail에 뿌릴 유저 정보
+	public List<User> getUserListByUserId(int userId) {
+		return userDAO.selectUserListByUserId(userId);
 	}
 }

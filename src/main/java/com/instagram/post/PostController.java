@@ -45,10 +45,7 @@ public class PostController {
 			return "redirect:/user/sign_in_view";
 		}
 		
-		// postId에 대한 하는 데이터값
-		// Post post = postBO.getPostByPostIdAndUserId(postId, userId);
-		
-		// CardView 타임라인에 뿌리기
+		// postList 타임라인에 뿌리기
 		List<Post> postList = postBO.getPostListByPostIdAndUserId(postId, userId);
 		
 		model.addAttribute("postList", postList);

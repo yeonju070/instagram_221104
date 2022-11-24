@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.instagram.common.EncryptUtils;
 import com.instagram.user.bo.UserBO;
@@ -68,7 +69,7 @@ public class UserRestController {
 		return result;
 	}
 	
-	//로그인 중복 확인
+	// 로그인 중복 확인
 	@RequestMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(
 			@RequestParam("loginId") String loginId) {
@@ -79,6 +80,28 @@ public class UserRestController {
 			result.put("result", true);
 		} else {
 			result.put("result", false);
+		}
+		
+		return result;
+	}
+	
+	// 프로필 사진 업로드
+	@RequestMapping("/profile_update")
+	public Map<String, Object> imagePathUpdate(
+			@RequestParam("file") MultipartFile file,
+			HttpSession session) {
+		
+		int userId = (int)session.getAttribute("userId");
+		String userLoginId =  (String)session.getAttribute("userLoginId");
+		
+		int row = userBO.updateUserProfileImagePathByUserId(userId, userLoginId, file);
+		
+		Map<String, Object> result = new HashMap<>();
+		if (row > 0) {
+			result.put("code", 100);
+		} else {
+			result.put("code", 400);
+			result.put("errorMessage", "프로필 사진 업로드에 실패했습니다.");
 		}
 		
 		return result;

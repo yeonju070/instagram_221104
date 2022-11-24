@@ -8,11 +8,20 @@ public class User {
 	private String loginId;
 	private String password;
 	private String phoneNumber;
+	private String imagePath;
 	private String name;
 	private String email;
 	private String introduce;
 	private Date createdAt;
 	private Date updatedAt;
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
 
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -21,7 +30,7 @@ public class User {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+
 	public String getIntroduce() {
 		return introduce;
 	}

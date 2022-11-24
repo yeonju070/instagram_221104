@@ -42,7 +42,7 @@ public class PostBO {
 		return postDAO.insertPost(userId, content, imagePath);
 	}
 	
-	// postDetail에 뿌릴 화면
+	// postDetail에 뿌릴 post 정보
 	public List<Post> getPostListByPostIdAndUserId(int postId, int userId) {
 		return postDAO.selectPostByPostIdAndUserId(postId, userId);
 	}
@@ -64,7 +64,7 @@ public class PostBO {
 		// 기존 게시글 가져오기
 		Post post = getPostByPostId(postId);
 		if (post == null) {
-			log.warn("[update post] 수정할 메모가 존재하지 않습니다. postId:{}, userId:{}", postId, userId);
+			log.warn("[update post] 수정할 게시글이 존재하지 않습니다. postId:{}, userId:{}", postId, userId);
 			return 0;
 		}
 		

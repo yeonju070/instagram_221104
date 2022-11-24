@@ -5,9 +5,16 @@
 	<div class="profile-box p-4">
 		<%-- 프로필 영역 --%>
 		<div class="profile-detail-box d-flex">
+			<c:forEach items="${userList}" var="user">
 			<div class="profile-imagePath d-flex justify-content-center">
-				<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="150px" height="150px" alt="기본 유저사진">
+				<c:if test="${empty user.imagePath}">
+					<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" class="my-profile-imagePath" alt="기본 유저사진">
+				</c:if>
+				<c:if test="${not empty user.imagePath}">
+					<img src="${user.imagePath}" class="my-profile-imagePath" alt="기본 유저사진">
+				</c:if>
 			</div>
+			</c:forEach>
 			
 			<%-- 유저 프로필 정보(프로필 사진, 게시물, 팔로워 등등..) 영역 --%>
 			<div class="user-profile-detail-box mt-2 ml-5">

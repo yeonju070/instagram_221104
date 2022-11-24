@@ -6,9 +6,11 @@
 		<div class="user-profile-nav col-3">
 			<div class="profile-nav">
 				<div class="d-flex profile-subject-box justify-content-end">
+					<c:forEach items="${userList}" var="user">
 					<a href="#" class="profile-imagePath-btn" data-toggle="modal" data-target="#profile-modal">
-						<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="55px" alt="기본 유저사진">
+						<img src="${user.imagePath}" class="my-profile-imagePath" alt="기본 유저사진">
 					</a>
+					</c:forEach>
 				</div>
 				<div class="d-flex profile-subject-box justify-content-end mt-3">
 					<span class="profile-subject">이름</span>
@@ -37,7 +39,6 @@
 				</a>
 			</div>
 			<div class="my-3">
-				<c:forEach items="${cardList}" var="card">
 				<form id="profileDetailForm" method="post" action="/user/profile_detail">
 					<div class="mt-3">
 						<input type="text" name="name" class="form-control" placeholder="이름" value="${card.user.name}">
@@ -58,7 +59,6 @@
 						<button type="submit" id="profileConformBtn" class="btn mb-5 text-white">제출</button>
 					</div>
 				</form>
-				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -77,7 +77,7 @@
       			<div class="border-top border-bottom">
       				<div class="my-2">
       					<input type="file" id="file" class="d-none" accept=".gif, .jpg, .png, .jpeg">
-      					<a href="#" id="imagePathBtn" class="btn font-weight-bold">사진 업로드</a>
+      					<a href="#" id="imagePathBtn" class="btn font-weight-bold" data-user-id="${userId}">사진 업로드</a>
       				</div>
       			</div>
       			<div class="border-bottom">
@@ -117,8 +117,31 @@ $(document).ready(function() {
 			$('#fileName').text('');
 			return;
 		}
+
+		let userId = $(this).data('user-id');
 		
-		$('#fileName').text(fileName);
+		let formData = new FormData();
+		formData.append("userId", userId);
+		formData.append("file", $('#file')[0].files[0]);
+		
+		// ajax
+		$.ajax({
+			type:"put"
+			, url:"/user/profile_update"
+			, data:formData
+			, enctype:"multipart/form-data"
+			, processData:false
+			, contentType:false
+			
+			, success:function(data) {
+				if (data.code == 100) {
+					alert("프로필을 수정하였습니다.");
+					location.reload();
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+		});
 	});
 });
 </script>
