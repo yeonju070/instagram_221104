@@ -70,7 +70,9 @@
 		UPDATE `post`
 		SET
 			`content` = #{content}
+			<if test="imagePath != null">
 			, `imagePath` = #{imagePath}
+			</if>
 			, `updatedAt` = NOW()
 		WHERE
 			`id` = #{postId}

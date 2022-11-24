@@ -45,7 +45,7 @@ public class PostRestController {
 	public Map<String, Object> update(
 			@RequestParam("postId") int postId,
 			@RequestParam("content") String content,
-			@RequestParam("file") MultipartFile file,
+			@RequestParam(value="file", required=false) MultipartFile file,
 			HttpSession session) {
 		
 		int userId = (int)session.getAttribute("userId");

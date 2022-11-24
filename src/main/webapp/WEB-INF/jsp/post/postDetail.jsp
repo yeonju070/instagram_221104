@@ -68,11 +68,6 @@ $(document).ready(function() {
 			return;
 		}
 		
-		if (file == '') {
-			alert('파일을 업로드 해주세요');
-			return;
-		}
-		
 		if (file != '') {
 			console.log(file.split('.').pop());
 			let ext = file.split('.').pop().toLowerCase();
@@ -92,7 +87,7 @@ $(document).ready(function() {
 		
 		// ajax
 		$.ajax({
-			type:"PUT"
+			type:"put"
 			, url:"/post/update"
 			, data:formData
 			, enctype:"multipart/form-data"
