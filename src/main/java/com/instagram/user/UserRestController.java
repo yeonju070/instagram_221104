@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -86,7 +87,7 @@ public class UserRestController {
 	}
 	
 	// 프로필 사진 업로드
-	@RequestMapping("/profile_update")
+	@PutMapping("/imagePath_update")
 	public Map<String, Object> imagePathUpdate(
 			@RequestParam("file") MultipartFile file,
 			HttpSession session) {
@@ -97,6 +98,52 @@ public class UserRestController {
 		int row = userBO.updateUserProfileImagePathByUserId(userId, userLoginId, file);
 		
 		Map<String, Object> result = new HashMap<>();
+		if (row > 0) {
+			result.put("code", 100);
+		} else {
+			result.put("code", 400);
+			result.put("errorMessage", "프로필 사진 업로드에 실패했습니다.");
+		}
+		
+		return result;
+	}
+	
+	// 프로필 사진 삭제
+	@PutMapping("/imagePath_delete")
+	public Map<String, Object> imagePathDelete(HttpSession session) {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		int userId = (int)session.getAttribute("userId");
+		
+		int row = userBO.updateDeleteUserProfileImagePathByUserId(userId);
+		
+		if (row > 0) {
+			result.put("code", 100);
+		} else {
+			result.put("code", 400);
+			result.put("errorMessage", "프로필 사진 업로드에 실패했습니다.");
+		}
+		
+		return result;
+	}
+	
+	@PutMapping("/profile_update")
+	public Map<String, Object> profileUpdate(
+			@RequestParam("name") String name,
+			@RequestParam("loginId") String loginId,
+			@RequestParam(value="introduce", required=false) String introduce,
+			@RequestParam("email") String email,
+			@RequestParam(value="phoneNumber", required=false) String phoneNumber,
+			HttpSession session) {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		int userId = (int)session.getAttribute("userId");
+		
+		int row = userBO.updateUserProfileDetailByUserId(userId, name,
+				loginId, introduce, email, phoneNumber);
+		
 		if (row > 0) {
 			result.put("code", 100);
 		} else {

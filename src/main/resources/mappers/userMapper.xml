@@ -99,7 +99,6 @@
 			<if test="imagePath != null">
 			`imagePath` = #{imagePath}
 			</if>
-			, `createdAt` = NOW()
 			, `updatedAt` = NOW()
 		WHERE
 			`id` = #{id}
@@ -123,4 +122,30 @@
 		WHERE
 			`id` = #{id}
 	</select>
+	
+	<update id="updateDeleteUserProfileImagePathByUserId" parameterType="map">
+		UPDATE `user`
+		SET
+			`imagePath` = NULL
+			, `updatedAt` = NOW()
+		WHERE
+			`id` = #{id}
+	</update>
+	
+	<update id="updateUserProfileDetailByUserId" parameterType="map">
+		UPDATE `user`
+		SET
+			`loginId` = #{loginId}
+			<if test="phoneNumber != null">
+			, `phoneNumber` = #{phoneNumber}
+			</if>
+			, `name` = #{name}
+			, `email` = #{email}
+			<if test="introduce != null">
+			, `introduce` = #{introduce}
+			</if>
+			, `updatedAt` = NOW()
+		WHERE
+			`id` = #{id}
+	</update>
 </mapper>

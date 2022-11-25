@@ -100,7 +100,8 @@ public class UserBO {
 	}
 	
 	// 유저(나 자신) 프로필 사진 업로드
-	public int updateUserProfileImagePathByUserId(int userId, String userLoginId, MultipartFile file) {
+	public int updateUserProfileImagePathByUserId(int userId, String userLoginId,
+			MultipartFile file) {
 		
 		// 나의 정보 가져오기
 		User user = getUserById(userId);
@@ -111,15 +112,20 @@ public class UserBO {
 		
 		String imagePath = null;
 		
-		if(file != null) {
-			// 성공시 추가
-			imagePath = fileManager.saveFile(userLoginId, file);
-			
-			// 성공시 기존 이미지 제거
-			if (imagePath != null && user.getImagePath() != null) {
-				fileManager.deleteFile(user.getImagePath());
-			}
+		// 파일이 없을 시
+		if (file == null) {
+			log.warn("[update user imagePath] 업데이트할 프로필 이미지가 없습니다. userId:{}", userId);
+			return 0;
 		}
+		
+		// 성공시 추가
+		imagePath = fileManager.saveFile(userLoginId, file);
+		
+		// 성공시 기존 이미지 제거
+		if (imagePath != null && user.getImagePath() != null) {
+			fileManager.deleteFile(user.getImagePath());
+		}
+
 		
 		return userDAO.updateUserProfileImagePathByUserId(userId, imagePath);
 	}
@@ -127,5 +133,26 @@ public class UserBO {
 	// profileDetail에 뿌릴 유저 정보
 	public List<User> getUserListByUserId(int userId) {
 		return userDAO.selectUserListByUserId(userId);
+	}
+	
+	// 프로필 이미지 삭제
+	public int updateDeleteUserProfileImagePathByUserId(int userId) {
+		
+		// 나의 정보 가져오기
+		User user = getUserById(userId);
+		if (user == null) {
+			log.warn("[add user] 추가할 프로필 이미지가 없습니다. userId:{}", userId);
+			return 0;
+		}
+		
+		return userDAO.updateDeleteUserProfileImagePathByUserId(userId);
+	}
+	
+	// 프로필 상세 업데이트
+	public int updateUserProfileDetailByUserId(int userId, String name, String loginId,
+			String introduce, String email, String phoneNumber) {
+		
+		return userDAO.updateUserProfileDetailByUserId(userId, name, loginId,
+				introduce, email, phoneNumber);
 	}
 }

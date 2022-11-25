@@ -38,4 +38,16 @@ public interface UserDAO {
 	
 	// 화면에 뿌릴 유저 정보
 	public List<User> selectUserListByUserId(int id);
+	
+	// 유저 프로필 이미지 삭제
+	public int updateDeleteUserProfileImagePathByUserId(int id);
+	
+	// 유저 프로필 정보
+	public int updateUserProfileDetailByUserId(
+			@Param("id") int id,
+			@Param("name") String name,
+			@Param("loginId") String loginId,
+			@Param("introduce") String introduce,
+			@Param("email") String email,
+			@Param("phoneNumber") String phoneNumber);
 }

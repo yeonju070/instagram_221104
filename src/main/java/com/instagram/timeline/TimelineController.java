@@ -37,7 +37,9 @@ public class TimelineController {
 		
 		List<CardView> cardViewList = timelineBO.generateCardList(userId);
 		List<User> userList = userBO.getRecommentUserList(userId);
+		List<User> userInfoList = userBO.getUserListByUserId(userId);
 		
+		model.addAttribute("userInfoList", userInfoList);
 		model.addAttribute("userList", userList);
 		model.addAttribute("cardList", cardViewList);
 		model.addAttribute("viewName", "timeline/timeline");

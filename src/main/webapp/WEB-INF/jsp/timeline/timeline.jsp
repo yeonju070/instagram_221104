@@ -19,9 +19,18 @@
 				<%-- 글쓴이, 더보기 --%>
 				<div class="p-2 d-flex justify-content-between">
 					<%-- 글쓴이 --%>
-					<a href="/user/profile_view">
-						<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="25px" alt="기본 유저사진">
-						<span class="font-weight-bold text-dark ml-1">${card.user.loginId}</span>
+					<a href="/user/profile_view" class="d-flex align-items-center">
+						<c:forEach items="${userInfoList}" var="userInfo">
+							<c:if test="${empty userInfo.imagePath}">
+								<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="25px" alt="기본 유저사진">
+							</c:if>
+							<c:if test="${not empty userInfo.imagePath}">
+								<div class="timeline-card-profile">
+									<img src="${userInfo.imagePath}" class="my-profile-imagePath" alt="기본 유저사진">
+								</div>
+							</c:if>
+							<div class="ml-3 font-weight-bold">${userInfo.loginId}</div>
+						</c:forEach>
 					</a>
 					<%-- 더보기 --%>
 					<a href="#" class="more-btn" data-toggle="modal" data-target="#more-modal" data-post-id="${card.post.id}" data-content-id="${card.post.content}" data-user-id="${card.user.id}">
@@ -65,7 +74,7 @@
 					<div class="card-comment my-2 ml-3">
 						<%-- 댓글이 없으면 없음 출력 --%>
 						<c:if test="${empty commentView}">
-							<div class="font-weight-bold">댓글없음</div>
+							<span class="font-weight-bold">댓글없음</span>
 						</c:if>
 						<%-- 댓글이 존재하면 해당 댓글 출력 --%>
 						<c:if test="${not empty commentView}">
@@ -97,26 +106,33 @@
 		<c:if test="${not empty userName}">
 		<div class="user-profile">
 			<%-- 내 프로필 --%>
-			<div class="d-flex align-items-center mb-3">
-				<a href="/user/profile_view">
-					<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="45px" alt="기본 유저사진">
-					<span class="ml-2 font-weight-bold">${userLoginId}</span>
+			<div class="timeline-my-profile">
+				<a href="/user/profile_view" class="d-flex align-items-center">
+					<c:forEach items="${userInfoList}" var="userInfo">
+						<c:if test="${empty userInfo.imagePath}">
+							<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="45px" alt="기본 유저사진">
+						</c:if>
+						<c:if test="${not empty userInfo.imagePath}">
+							<div class="timeline-profile-imagePath">
+								<img src="${userInfo.imagePath}" class="my-profile-imagePath" width="45px" alt="기본 유저사진">
+							</div>
+							</c:if>
+						<div class="ml-3 font-weight-bold">${userInfo.loginId}</div>
+					</c:forEach>
 				</a>
 			</div>
 			
-			<div class="another">
+			<div class="another my-2">
 				<span class="ml-1 text-secondary font-weight-bold">회원님을 위한 추천</span>
 			</div>
 			
 			<%-- 다른 사람 프로필 --%>
 			<c:forEach items="${userList}" var="user">
 			<div class="another-user mt-3 d-flex align-items-center justify-content-between">
-				<div>
-					<a href="/user/profile_view">
-						<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="45px" alt="기본 유저사진">
-						<span class="ml-2 text-dark font-weight-bold">${user.loginId}</span>
-					</a>
-				</div>
+				<a href="/user/profile_view">
+					<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="45px" alt="기본 유저사진">
+					<span class="ml-2 text-dark font-weight-bold">${user.loginId}</span>
+				</a>
 				<div class="align-items-end">
 					<a href="#" class="follow-btn font-weight-bold" data-user-id="${user.id}">팔로우</a>
 				</div>
