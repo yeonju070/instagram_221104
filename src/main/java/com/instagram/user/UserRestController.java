@@ -129,6 +129,7 @@ public class UserRestController {
 		return result;
 	}
 	
+	// 프로필 상세 영역
 	@PostMapping("/profile_update")
 	public Map<String, Object> profileUpdate(
 			@RequestParam("name") String name,

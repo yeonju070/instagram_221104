@@ -6,8 +6,10 @@
 	<div class="timeline-box m-5">
 		<%-- 검색 영역 --%>
 		<div class="d-flex">
-			<input type="text" id="search" class="form-control" placeholder="검색할 내용을 입력하세요.">
-			<button id="searchBtn" class="btn text-white">검색</button>
+			<form id="searchForm" action="/timeline/timeline_view" method="get" class="d-flex">
+				<input type="text" name="search" class="form-control" size=100 placeholder="검색할 내용을 입력해주세요.">
+				<button type="submit" id="searchBtn" class="btn text-white">검색</button>
+			</form>
 		</div>
 		
 		<%-- 게시글 영역 --%>
@@ -73,7 +75,7 @@
 					<c:forEach items="${card.commentList}" var="commentView">
 					<div class="card-comment my-2 ml-3">
 						<%-- 댓글이 없으면 없음 출력 --%>
-						<c:if test="${empty commentView}">
+						<c:if test="${empty commentView.comment.content}">
 							<span class="font-weight-bold">댓글없음</span>
 						</c:if>
 						<%-- 댓글이 존재하면 해당 댓글 출력 --%>
@@ -123,7 +125,7 @@
 			</div>
 			
 			<div class="another my-2">
-				<span class="ml-1 text-secondary font-weight-bold">회원님을 위한 추천</span>
+				<span class="d-flex ml-1 mt-2 text-secondary font-weight-bold">회원님을 위한 추천</span>
 			</div>
 			
 			<%-- 다른 사람 프로필 --%>
@@ -318,6 +320,30 @@ $(document).ready(function() {
 			}
 			, error:function(e) {
 				alert("팔로우에 실패했습니다. 관리자에게 문의해주세요.");
+			}
+		});
+	});
+	
+	// 검색 버튼 클릭
+	$('#searchBtn').on('click', function(e) {
+		e.preventDefault();
+		
+		let search = $('input[name=search]').val().trim();
+
+		if (search == '') {
+			alert("검색할 내용을 입력해주세요.");
+		}
+		
+		// ajax
+		let url = $('#searchForm').attr("action");
+		let params = $('#searchForm').serialize();
+		
+		$.post(url, params)
+		. done(function(data) {
+			if (data.code == 100) {	
+				location.href="/timeline/timeline_view";
+			} else {
+				alert("검색어에 대한 게시글이 존재하지 않습니다.\n다시 입력해주세요.");
 			}
 		});
 	});

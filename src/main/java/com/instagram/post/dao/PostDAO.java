@@ -22,7 +22,7 @@ public interface PostDAO {
 			@Param("userId") int userId);
 	
 	// 게시글 list 가져오는 메소드
-	public List<Post> selectPostList();
+	public List<Post> selectPostList(String content);
 	
 	// 기존 게시글 가져오기
 	public Post selectPostById(int id);
@@ -38,4 +38,7 @@ public interface PostDAO {
 	public void deletePostByPostIdAndUserId(
 			@Param("postId") int postId,
 			@Param("userId") int userId);
+	
+	// 게시글 검색 메소드
+	public Post selectPostByContent(String content);
 }

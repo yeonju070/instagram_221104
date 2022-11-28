@@ -48,8 +48,8 @@ public class PostBO {
 	}
 	
 	// timelineBO에 보낼 post의 리스트
-	public List<Post> getPostList() {
-		return postDAO.selectPostList();
+	public List<Post> getPostList(String search) {
+		return postDAO.selectPostList(search);
 	}
 	
 	// 기존 게시글 가져오는 메소드

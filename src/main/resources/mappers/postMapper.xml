@@ -32,6 +32,12 @@
 			,`updatedAt`
 		FROM
 			`post`
+		<if test="content != null">
+		WHERE
+			`content`
+			LIKE
+			#{content%}
+		</if>
 		ORDER BY `id` DESC
 	</select>
 	

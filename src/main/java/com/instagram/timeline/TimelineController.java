@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.instagram.timeline.bo.TimelineBO;
 import com.instagram.timeline.model.CardView;
@@ -27,6 +28,7 @@ public class TimelineController {
 	// 타임라인 화면
 	@RequestMapping("/timeline_view")
 	public String timelineView(
+			@RequestParam(value="search", required=false) String search,
 			HttpSession session,
 			Model model) {
 		
@@ -35,8 +37,13 @@ public class TimelineController {
 			return "redirect:/user/sign_in_view";
 		}
 		
-		List<CardView> cardViewList = timelineBO.generateCardList(userId);
+		// cardView 타임라인에 뿌리기
+		List<CardView> cardViewList = timelineBO.generateCardList(userId, search);
+		
+		// userList(전체) 타임라인에 뿌리기
 		List<User> userList = userBO.getRecommentUserList(userId);
+		
+		// userInfoList(유저 하나의 정보) 타임라인에 뿌리기
 		List<User> userInfoList = userBO.getUserListByUserId(userId);
 		
 		model.addAttribute("userInfoList", userInfoList);

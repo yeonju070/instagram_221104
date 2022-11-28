@@ -31,11 +31,11 @@ public class TimelineBO {
 	private CommentBO commentBO;
 	
 	// 가공된 CardView를 만드는 객체
-	public List<CardView> generateCardList(Integer userId) {
+	public List<CardView> generateCardList(Integer userId, String search) {
 		List<CardView> cardViewList = new ArrayList<>();
 		
 		// 게시글 목록 가져오기
-		List<Post> postList = postBO.getPostList();
+		List<Post> postList = postBO.getPostList(search);
 		
 		// cardView에 채우기
 		for (Post post : postList) {
