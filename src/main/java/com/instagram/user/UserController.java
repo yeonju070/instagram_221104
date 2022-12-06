@@ -18,7 +18,7 @@ import com.instagram.user.model.User;
 @Controller
 public class UserController {
 	
-	//@Autowired
+	@Autowired
 	private TimelineBO timelineBO;
 	
 	@Autowired
