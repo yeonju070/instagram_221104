@@ -46,6 +46,7 @@ public class TimelineController {
 		// userInfoList(유저 하나의 정보) 타임라인에 뿌리기
 		List<User> userInfoList = userBO.getUserListByUserId(userId);
 		
+		model.addAttribute("search", search);
 		model.addAttribute("userInfoList", userInfoList);
 		model.addAttribute("userList", userList);
 		model.addAttribute("cardList", cardViewList);

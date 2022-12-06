@@ -167,7 +167,6 @@ $(document).ready(function() {
 	
 	// 이미지 클릭 시 프로필 화면 수정
 	$('#imagePathBtn').on('click', function() {
-
 		$('#file').click();
 	});
 	
@@ -187,7 +186,6 @@ $(document).ready(function() {
 			$('#fileName').text('');
 			return;
 		}
-
 		let userId = $(this).data('user-id');
 		
 		let formData = new FormData();

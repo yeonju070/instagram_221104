@@ -20,7 +20,7 @@
 				</div>
 				<div>
 					<a href="#" class="btn messageBtn bg-white ml-3 mb-3">
-						<img src="https://cdn.icon-icons.com/icons2/3237/PNG/512/chatting_logo_tool_direct_message_social_media_icon_197332.png" alt="메시지" width="25px">
+						<img src="https://cdn.icon-icons.com/icons2/817/PNG/512/thefreeforty_message_icon-icons.com_66333.png" alt="메시지" width="25px">
 						<span class="ml-3">메시지</span>
 					</a>
 				</div>

@@ -36,7 +36,7 @@
 		WHERE
 			`content`
 			LIKE
-			#{content%}
+			concat('%', #{content}, '%')
 		</if>
 		ORDER BY `id` DESC
 	</select>

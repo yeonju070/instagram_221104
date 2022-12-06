@@ -18,7 +18,7 @@ import com.instagram.user.model.User;
 @Controller
 public class UserController {
 	
-	@Autowired
+	//@Autowired
 	private TimelineBO timelineBO;
 	
 	@Autowired
@@ -60,7 +60,7 @@ public class UserController {
 		}
 		
 		// cardView 화면에 뿌리기
-		List<CardView> cardViewList = timelineBO.generateCardList(userId);
+		List<CardView> cardViewList = timelineBO.generateCardList(userId, null);
 		
 		// userList 화면에 뿌리기
 		List<User> userList = userBO.getUserListByUserId(userId);
@@ -83,7 +83,7 @@ public class UserController {
 		}
 		
 		// cardView 화면에 뿌리기
-		List<CardView> cardViewList = timelineBO.generateCardList(userId);
+		List<CardView> cardViewList = timelineBO.generateCardList(userId, null);
 		
 		// userList 화면에 뿌리기
 		List<User> userList = userBO.getUserListByUserId(userId);
