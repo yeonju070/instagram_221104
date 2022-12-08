@@ -54,7 +54,7 @@ public class UserBO {
 	public List<User> getRecommentUserList(int userId) {
 		
 		// 유저 리스트
-		List<User> userList = userDAO.selectUserList();
+		List<User> userList = userDAO.selectRecommentUserList();
 		
 		// 유저 리스트가 비어있을 경우
 		if (ObjectUtils.isEmpty(userList)) {
@@ -154,5 +154,56 @@ public class UserBO {
 		
 		return userDAO.updateUserProfileDetailByUserId(userId, name, loginId,
 				introduce, email, phoneNumber);
+	}
+	
+	// message에 보낼 팔로우한 user의 리스트
+	public List<User> getUserList(int userId) {
+		
+		// 유저 리스트
+		List<User> userList = userDAO.selectRecommentUserList();
+		
+		// 유저 리스트가 비어있을 경우
+		if (ObjectUtils.isEmpty(userList)) {
+			return new ArrayList<>();
+		}
+		
+		// 나 자신은 리스트에서 제거
+		for (int i = 0; i < userList.size(); i++) {
+			if (userList.get(i).getId() == userId) {
+				userList.remove(i);
+			}
+		}
+		
+		// 팔로우 한 유저만 리스트에 출력
+		for (int i = 0; i < userList.size(); i++) {
+			if (followBO.checkFollow(userId, userList.get(i).getId()) == true) {
+				userList.get(i);
+			} else {
+				userList.remove(i);
+			}
+		}
+		
+		// 유저 랜덤 추천
+		Random rnd = new Random();
+	
+		for (int i = 0; i < 50; i++) {
+			int rndIndex = rnd.nextInt(userList.size());
+			User tempUser = userList.get(0);
+			userList.set(0, userList.get(rndIndex));	// 0번째 index에 랜덤 index입력
+			userList.set(rndIndex, tempUser);			// 랜덤으로 섞인 index에 tempUser를 넣는다.
+		}
+		
+		// 유저가 4명이상 리스트에 담겨있는지 체크
+		if (userList.size() < 4) {
+			return userList;
+		}
+		
+		// 4명의 유저만 추천
+		List<User> userRecommentList = new ArrayList<>();
+		for (int i = 0; i < 4; i++) {
+			userRecommentList.add(userList.get(i));
+		}
+			
+		return userRecommentList;
 	}
 }

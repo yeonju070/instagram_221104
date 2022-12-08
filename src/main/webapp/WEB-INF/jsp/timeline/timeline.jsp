@@ -4,10 +4,10 @@
 <div class="d-flex justify-content-center">
 	<%-- 타임라인 영역 --%>
 	<div class="timeline-box m-5">
-		<form id="searchForm" action="/timeline/timeline_view" method="get">
+		<form role="searchForm" id="searchFormId" action="/timeline/timeline_view" method="get">
 			<%-- 검색 영역 --%>
 			<div class="d-flex">
-				<input type="text" name="search" class="form-control" size=100 placeholder="검색할 내용을 입력해주세요.">
+				<input type="text" name="search" class="form-control" size=100 placeholder="검색할 내용을 입력해주세요." value="${search}">
 				<button type="submit" id="searchBtn" class="btn text-white">검색</button>
 			</div>
 		
@@ -15,6 +15,10 @@
 			<div class="timeline-box my-5">
 			
 				<%-- 카드 1 --%>
+				<c:if test="${empty cardList}">
+					게시글이 없습니다.
+				</c:if>
+				<c:if test="${not empty cardList}">
 				<c:forEach items="${cardList}" var="card">
 				<div class="card border rounded mt-3">
 					<%-- 글쓴이, 더보기 --%>
@@ -99,6 +103,7 @@
 					</div>	<%-- 댓글 내용 닫기 --%>
 				</div>	<%-- 카드1 닫기 --%>
 				</c:forEach>
+				</c:if>
 			</div>	<%-- 게시글 영역 닫기 --%>
 		</form>
 	</div>	<%-- 타임라인 영역 닫기  --%>
@@ -325,21 +330,18 @@ $(document).ready(function() {
 	});
 	
 	// 검색 버튼 클릭
-	$('#searchBtn').on('click', function(e) {
-		e.preventDefault();
+	$('#searchBtn').on('click', function() {
 		
 		let search = $('input[name=search]').val().trim();
 
 		if (search == '') {
 			alert("검색할 내용을 입력해주세요.");
 		}
+
+		let searchForm = $("form[role='searchForm']");
 		
-		// ajax
-		let url = $('#searchForm').attr("action");
-		let params = $('#searchForm').serialize();
-		
-		let formData = new FormData();
-		formData.append('search', 'search');
+		searchForm.attr("action", "/timeline/timeline_view");
+		searchForm.attr("method", "get");
 	});
 });
 </script>

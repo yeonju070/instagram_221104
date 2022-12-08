@@ -29,7 +29,7 @@ public interface UserDAO {
 	public User selectUserById(int id);
 	
 	// 유저 추천 리스트
-	public List<User> selectUserList();
+	public List<User> selectRecommentUserList();
 	
 	// 유저 프로필 사진 업로드
 	public int updateUserProfileImagePathByUserId(
@@ -50,4 +50,7 @@ public interface UserDAO {
 			@Param("introduce") String introduce,
 			@Param("email") String email,
 			@Param("phoneNumber") String phoneNumber);
+	
+	// message에 보낼 userList
+	public List<User> selectUserList(int id);
 }

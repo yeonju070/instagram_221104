@@ -19,7 +19,7 @@
 					</a>
 				</div>
 				<div>
-					<a href="#" class="btn messageBtn bg-white ml-3 mb-3">
+					<a href="/message/message_list" class="btn messageBtn bg-white ml-3 mb-3">
 						<img src="https://cdn.icon-icons.com/icons2/817/PNG/512/thefreeforty_message_icon-icons.com_66333.png" alt="메시지" width="25px">
 						<span class="ml-3">메시지</span>
 					</a>
