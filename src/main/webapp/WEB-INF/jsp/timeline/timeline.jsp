@@ -4,103 +4,103 @@
 <div class="d-flex justify-content-center">
 	<%-- 타임라인 영역 --%>
 	<div class="timeline-box m-5">
-		<%-- 검색 영역 --%>
-		<div class="d-flex">
-			<form id="searchForm" action="/timeline/timeline_view" method="get" class="d-flex">
+		<form id="searchForm" action="/timeline/timeline_view" method="get">
+			<%-- 검색 영역 --%>
+			<div class="d-flex">
 				<input type="text" name="search" class="form-control" size=100 placeholder="검색할 내용을 입력해주세요.">
 				<button type="submit" id="searchBtn" class="btn text-white">검색</button>
-			</form>
-		</div>
+			</div>
 		
-		<%-- 게시글 영역 --%>
-		<div class="timeline-box my-5">
-		
-			<%-- 카드 1 --%>
-			<c:forEach items="${cardList}" var="card">
-			<div class="card border rounded mt-3">
-				<%-- 글쓴이, 더보기 --%>
-				<div class="p-2 d-flex justify-content-between">
-					<%-- 글쓴이 --%>
-					<a href="/user/profile_view" class="d-flex align-items-center">
-						<c:forEach items="${userInfoList}" var="userInfo">
-							<c:if test="${empty userInfo.imagePath}">
-								<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="25px" alt="기본 유저사진">
-							</c:if>
-							<c:if test="${not empty userInfo.imagePath}">
-								<div class="timeline-card-profile">
-									<img src="${userInfo.imagePath}" class="my-profile-imagePath" alt="기본 유저사진">
-								</div>
-							</c:if>
-							<div class="ml-3 font-weight-bold">${userInfo.loginId}</div>
-						</c:forEach>
-					</a>
-					<%-- 더보기 --%>
-					<a href="#" class="more-btn" data-toggle="modal" data-target="#more-modal" data-post-id="${card.post.id}" data-content-id="${card.post.content}" data-user-id="${card.user.id}">
-						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/330px-Hamburger_icon.svg.png" width="25">
-					</a>
-				</div>
-				
-				<%-- 카드 이미지 --%>
-				<div class="card-img">
-					<img src="${card.post.imagePath}" class="w-100" alt="본문 이미지">
-				</div>
-				
-				<%-- 좋아요, 댓글 --%>
-				<div class="card-like ml-3 mt-2">
-					<a href="#" class="like-btn" data-user-id="${userId}" data-post-id="${card.post.id}">
-						<c:if test="${card.filledLike eq false}">
-							<img src="https://cdn-icons-png.flaticon.com/512/7476/7476962.png" width="18px" height="18px" alt="filled heart">
-						</c:if>
-						<c:if test="${card.filledLike eq true}">
-						<img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" width="18px" height="18px" alt="empty heart">
-						</c:if>
-						<span>좋아요 ${card.likeCount}</span>
-					</a>
-				</div>
-				
-				<%-- 글 --%>
-				<div class="card-post my-2 ml-3">
-					<span class="font-weight-bold">${card.user.loginId}</span>
-					<span>${card.post.content}</span>
-				</div>
-				
-				<%-- 댓글 --%>
-				<div class="card-comment-desc border-bottom">
-					<div class="ml-3 mb-2 font-weight-bold">댓글 ${card.commentCount}</div>
-				</div>
-				
-				<%-- 댓글 내용 --%>
-				<div class="card-comment-list">
-					<%-- 댓글 목록 --%>
-					<c:forEach items="${card.commentList}" var="commentView">
-					<div class="card-comment my-2 ml-3">
-						<%-- 댓글이 없으면 없음 출력 --%>
-						<c:if test="${empty commentView.comment.content}">
-							<span class="font-weight-bold">댓글없음</span>
-						</c:if>
-						<%-- 댓글이 존재하면 해당 댓글 출력 --%>
-						<c:if test="${not empty commentView}">
-							<span class="font-weight-bold">${commentView.user.loginId}:</span>
-							<span>${commentView.comment.content}</span>
-						</c:if>
-						
-						<%-- 댓글 삭제 버튼 --%>
-						<c:if test="${not empty userLoginId}">
-						<a href="#" class="comment-delBtn" data-comment-id="${commentView.comment.id}">
-							<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
+			<%-- 게시글 영역 --%>
+			<div class="timeline-box my-5">
+			
+				<%-- 카드 1 --%>
+				<c:forEach items="${cardList}" var="card">
+				<div class="card border rounded mt-3">
+					<%-- 글쓴이, 더보기 --%>
+					<div class="p-2 d-flex justify-content-between">
+						<%-- 글쓴이 --%>
+						<a href="/user/profile_view" class="d-flex align-items-center">
+							<c:forEach items="${userInfoList}" var="userInfo">
+								<c:if test="${empty userInfo.imagePath}">
+									<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="25px" alt="기본 유저사진">
+								</c:if>
+								<c:if test="${not empty userInfo.imagePath}">
+									<div class="timeline-card-profile">
+										<img src="${userInfo.imagePath}" class="my-profile-imagePath" alt="기본 유저사진">
+									</div>
+								</c:if>
+								<div class="ml-3 font-weight-bold">${userInfo.loginId}</div>
+							</c:forEach>
 						</a>
-						</c:if>
+						<%-- 더보기 --%>
+						<a href="#" class="more-btn" data-toggle="modal" data-target="#more-modal" data-post-id="${card.post.id}" data-content-id="${card.post.content}" data-user-id="${card.user.id}">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/330px-Hamburger_icon.svg.png" width="25">
+						</a>
 					</div>
-					</c:forEach>
-					<%-- 댓글 쓰기 --%>
-					<div class="comment-write d-flex border-top mt-3">
-						<input type="text" class="form-control border-0" placeholder="댓글 달기"/> 
-						<button type="button" class="comment-btn btn bg-white" data-post-id="${card.post.id}">게시</button>
+					
+					<%-- 카드 이미지 --%>
+					<div class="card-img">
+						<img src="${card.post.imagePath}" class="w-100" alt="본문 이미지">
 					</div>
-				</div>	<%-- 댓글 내용 닫기 --%>
-			</div>	<%-- 카드1 닫기 --%>
-			</c:forEach>
-		</div>	<%-- 게시글 영역 닫기 --%>
+					
+					<%-- 좋아요, 댓글 --%>
+					<div class="card-like ml-3 mt-2">
+						<a href="#" class="like-btn" data-user-id="${userId}" data-post-id="${card.post.id}">
+							<c:if test="${card.filledLike eq false}">
+								<img src="https://cdn-icons-png.flaticon.com/512/7476/7476962.png" width="18px" height="18px" alt="filled heart">
+							</c:if>
+							<c:if test="${card.filledLike eq true}">
+							<img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" width="18px" height="18px" alt="empty heart">
+							</c:if>
+							<span>좋아요 ${card.likeCount}</span>
+						</a>
+					</div>
+					
+					<%-- 글 --%>
+					<div class="card-post my-2 ml-3">
+						<span class="font-weight-bold">${card.user.loginId}</span>
+						<span>${card.post.content}</span>
+					</div>
+					
+					<%-- 댓글 --%>
+					<div class="card-comment-desc border-bottom">
+						<div class="ml-3 mb-2 font-weight-bold">댓글 ${card.commentCount}</div>
+					</div>
+					
+					<%-- 댓글 내용 --%>
+					<div class="card-comment-list">
+						<%-- 댓글 목록 --%>
+						<c:forEach items="${card.commentList}" var="commentView">
+						<div class="card-comment my-2 ml-3">
+							<%-- 댓글이 없으면 댓글없음 출력 --%>
+							<c:if test="${empty commentView.comment.content}">
+								<span class="font-weight-bold">댓글없음</span>
+							</c:if>
+							<%-- 댓글이 존재하면 해당 댓글 출력 --%>
+							<c:if test="${not empty commentView}">
+								<span class="font-weight-bold">${commentView.user.loginId}:</span>
+								<span>${commentView.comment.content}</span>
+							</c:if>
+							
+							<%-- 댓글 삭제 버튼 --%>
+							<c:if test="${not empty userLoginId}">
+							<a href="#" class="comment-delBtn" data-comment-id="${commentView.comment.id}">
+								<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
+							</a>
+							</c:if>
+						</div>
+						</c:forEach>
+						<%-- 댓글 쓰기 --%>
+						<div class="comment-write d-flex border-top mt-3">
+							<input type="text" class="form-control border-0" placeholder="댓글 달기"/> 
+							<button type="button" class="comment-btn btn bg-white" data-post-id="${card.post.id}">게시</button>
+						</div>
+					</div>	<%-- 댓글 내용 닫기 --%>
+				</div>	<%-- 카드1 닫기 --%>
+				</c:forEach>
+			</div>	<%-- 게시글 영역 닫기 --%>
+		</form>
 	</div>	<%-- 타임라인 영역 닫기  --%>
 	
 	<%-- 프로필 영역 --%>
@@ -338,14 +338,8 @@ $(document).ready(function() {
 		let url = $('#searchForm').attr("action");
 		let params = $('#searchForm').serialize();
 		
-		$.post(url, params)
-		. done(function(data) {
-			if (data.code == 100) {	
-				location.href="/timeline/timeline_view";
-			} else {
-				alert("검색어에 대한 게시글이 존재하지 않습니다.\n다시 입력해주세요.");
-			}
-		});
+		let formData = new FormData();
+		formData.append('search', 'search');
 	});
 });
 </script>
