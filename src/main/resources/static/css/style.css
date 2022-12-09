@@ -52,6 +52,7 @@ section {width: 100%; height: 100%;}
 /* 프로필 설정 영역 */
 .profile-imagePath-btn {width:55px; height:50px; border-radius: 70%; overflow: hidden;}
 .my-profile-imagePath {width: 100%; height: 100%; object-fit: cover;}
+#userLoginIdBox {width:300px;}
 .user-profile-detail{width:600px; height:600px;}
 .profile-subject-box {font-size:18px; height:53px;}
 .profile-info-box {font-size:18px; height:95px;}

@@ -21,12 +21,14 @@
 			<%-- 유저 프로필 정보(프로필 사진, 게시물, 팔로워 등등..) 영역 --%>
 			<div class="user-profile-detail-box mt-2 ml-5">
 				<c:forEach items="${userList}" var="user">
-				<div class="d-flex justify-content-start">
+				<div id="userLoginIdBox" class="d-flex justify-content-between">
 				<span id="ProfileloginId">${user.loginId}</span>
-					<a href="/user/profile_detail_view" id="profileDetailBtn" class="btn border ml-5 font-weight-bold">프로필 편집</a>
-					<a href="/user/profile_detail_view" class="ml-2">
-						<img src="https://cdn-icons-png.flaticon.com/512/17/17146.png?w=740&t=st=1669200934~exp=1669201534~hmac=0b033b009415440b5617e473cbc35bdd54f82c824d97b9e7c8a0a64c098b840f" width="30px" alt="설정">
-					</a>
+					<div id="moveUserProfileDetail">
+						<a href="/user/profile_detail_view" id="profileDetailBtn" class="btn border font-weight-bold">프로필 편집</a>
+						<a href="/user/profile_detail_view" class="ml-2">
+							<img src="https://cdn-icons-png.flaticon.com/512/17/17146.png?w=740&t=st=1669200934~exp=1669201534~hmac=0b033b009415440b5617e473cbc35bdd54f82c824d97b9e7c8a0a64c098b840f" width="30px" alt="설정">
+						</a>
+					</div>
 				</div>
 				</c:forEach>
 				
