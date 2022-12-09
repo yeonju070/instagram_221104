@@ -52,5 +52,5 @@ public interface UserDAO {
 			@Param("phoneNumber") String phoneNumber);
 	
 	// message에 보낼 userList
-	public List<User> selectUserList(int id);
+	public List<User> selectFollowUserList(int id, String loginId);
 }

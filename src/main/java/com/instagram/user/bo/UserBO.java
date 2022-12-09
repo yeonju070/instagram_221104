@@ -157,7 +157,7 @@ public class UserBO {
 	}
 	
 	// message에 보낼 팔로우한 user의 리스트
-	public List<User> getUserList(int userId) {
+	public List<User> getFollowUserList(int userId, String search) {
 		
 		// 유저 리스트
 		List<User> userList = userDAO.selectRecommentUserList();

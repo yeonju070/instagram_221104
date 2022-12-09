@@ -54,7 +54,7 @@
 					<c:if test="${card.post.imagePath != null}">
 						<div class="post-list d-flex justify-content-center">
 							<a href="#" data-toggle="modal" data-target="#post-modal">
-								<img src="${card.post.imagePath}"  alt="기본 이미지" width="250px" height="250px" class="m-3 mt-4 my-post-list" data-post-id="${card.post.id}">
+								<img src="${card.post.imagePath}"  alt="기본 이미지" width="250px" height="250px" class="m-4 my-post-list" data-post-id="${card.post.id}">
 							</a>
 						</div>
 					</c:if>

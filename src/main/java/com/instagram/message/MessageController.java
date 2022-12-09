@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.instagram.user.bo.UserBO;
 import com.instagram.user.model.User;
@@ -23,6 +24,7 @@ public class MessageController {
 	// 메시지화면
 	@RequestMapping("/message_list")
 	public String messageListView(
+			@RequestParam(value="userSearch", required=false) String userSearch,
 			HttpSession session,
 			Model model) {
 		
@@ -31,9 +33,10 @@ public class MessageController {
 			return "redirect:/user/sign_in_view";
 		}
 		
-		// userList(전체) 타임라인에 뿌리기
-		List<User> userList = userBO.getUserList(userId);
+		// 팔로우한 userList(전체) 타임라인에 뿌리기
+		List<User> userList = userBO.getFollowUserList(userId, userSearch);
 		
+		model.addAttribute("userSearch", userSearch);
 		model.addAttribute("userList", userList);
 		model.addAttribute("viewName", "message/messageList");
 		return "template/layout";
@@ -51,7 +54,7 @@ public class MessageController {
 		}
 		
 		// userList(전체) 타임라인에 뿌리기
-		List<User> userList = userBO.getUserList(userId);
+		List<User> userList = userBO.getFollowUserList(userId, null);
 		
 		model.addAttribute("userList", userList);
 		model.addAttribute("viewName", "message/messageInbox");

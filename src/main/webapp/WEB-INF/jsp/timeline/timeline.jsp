@@ -77,14 +77,14 @@
 						<%-- 댓글 목록 --%>
 						<c:forEach items="${card.commentList}" var="commentView">
 						<div class="card-comment my-2 ml-3">
-							<%-- 댓글이 없으면 댓글없음 출력 --%>
-							<c:if test="${empty commentView.comment.content}">
-								<span class="font-weight-bold">댓글없음</span>
-							</c:if>
 							<%-- 댓글이 존재하면 해당 댓글 출력 --%>
 							<c:if test="${not empty commentView}">
 								<span class="font-weight-bold">${commentView.user.loginId}:</span>
 								<span>${commentView.comment.content}</span>
+							</c:if>
+							<%-- 댓글이 없으면 댓글없음 출력 --%>
+							<c:if test="${empty commentView.comment.content}">
+								<span class="font-weight-bold">댓글없음</span>
 							</c:if>
 							
 							<%-- 댓글 삭제 버튼 --%>
@@ -332,12 +332,14 @@ $(document).ready(function() {
 	// 검색 버튼 클릭
 	$('#searchBtn').on('click', function() {
 		
+		// validation
 		let search = $('input[name=search]').val().trim();
 
 		if (search == '') {
 			alert("검색할 내용을 입력해주세요.");
 		}
 
+		// ajax는 json형태로 변환되기 때문에 view로 그대로 뿌리려면 ajax를 사용해서는 안된다.
 		let searchForm = $("form[role='searchForm']");
 		
 		searchForm.attr("action", "/timeline/timeline_view");

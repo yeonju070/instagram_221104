@@ -149,7 +149,7 @@
 			`id` = #{id}
 	</update>
 	
-	<select id="selectUserList" resultType="com.instagram.user.model.User">
+	<select id="selectFollowUserList" resultType="com.instagram.user.model.User">
 		SELECT
 			`id`
 			,`loginId`
