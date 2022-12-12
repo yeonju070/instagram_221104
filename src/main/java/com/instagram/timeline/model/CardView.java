@@ -7,7 +7,7 @@ import com.instagram.post.model.Post;
 import com.instagram.user.model.User;
 
 public class CardView {
-	// 글 1개
+	// 게시글 1개 정보
 	private Post post;
 
 	// 글쓴이 정보

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.instagram.follow.bo.FollowBO;
+import com.instagram.post.bo.PostBO;
 import com.instagram.timeline.bo.TimelineBO;
 import com.instagram.timeline.model.CardView;
 import com.instagram.user.bo.UserBO;
@@ -23,6 +25,12 @@ public class UserController {
 	
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private PostBO postBO;
+	
+	@Autowired
+	private FollowBO followBO;
 	
 	// 회원가입 화면
 	@RequestMapping("/sign_up_view")
@@ -65,6 +73,22 @@ public class UserController {
 		// userList 화면에 뿌리기
 		List<User> userList = userBO.getUserListByUserId(userId);
 		
+		// 게시글 개수 화면에 뿌리기
+		int postCount = postBO.getPostCountByUserId(userId);
+		
+		// 팔로우 개수 화면에 뿌리기
+		int followerCount = followBO.getFollowCountByFollowerId(userId);
+
+		// 팔로워 개수 화면에 뿌리기
+		int followeeCount = followBO.getFollowCountByFolloweeId(userId);
+		
+		// 팔로우한 userList(전체) 타임라인에 뿌리기
+		List<User> followerList = userBO.getFollowUserList(userId, null);
+		
+		model.addAttribute("followerList", followerList);
+		model.addAttribute("followerCount", followerCount);
+		model.addAttribute("followeeCount", followeeCount);
+		model.addAttribute("postCount", postCount);
 		model.addAttribute("userList", userList);
 		model.addAttribute("cardList", cardViewList);
 		model.addAttribute("viewName", "user/profile");

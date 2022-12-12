@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.instagram.common.FileManagerService;
 import com.instagram.follow.bo.FollowBO;
+import com.instagram.follow.model.Follow;
 import com.instagram.user.dao.UserDAO;
 import com.instagram.user.model.User;
 
@@ -205,5 +206,22 @@ public class UserBO {
 		}
 			
 		return userRecommentList;
+	}
+	
+	// 나를 팔로우한 유저 리스트
+	public List<User> getFolloweeUserList(int userId) {
+		
+		// 유저 리스트
+		List<Follow> followList = followBO.getFollowListByFolloweeId(userId);
+		
+		// 유저 리스트가 비어있을 경우
+		if (ObjectUtils.isEmpty(followList)) {
+			return new ArrayList<>();
+		}
+		
+		// 나를 팔로우 한 유저만 리스트에 출력
+		for (int i = 0; i < followList.size(); i++) {
+			int userList = followList.get(i).getFollowerId();
+		}
 	}
 }

@@ -34,6 +34,9 @@ public interface PostDAO {
 			@Param("content") String content,
 			@Param("imagePath") String imagePath);
 	
+	// 게시글 개수 확인
+	public int selectPostCountByUserId(int userId);
+	
 	// 게시글 삭제 메소드
 	public void deletePostByPostIdAndUserId(
 			@Param("postId") int postId,

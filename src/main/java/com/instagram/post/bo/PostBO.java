@@ -83,6 +83,11 @@ public class PostBO {
 		return postDAO.updatePost(postId, userId, content, imagePath);
 	}
 	
+	// 게시글 개수 확인
+	public int getPostCountByUserId(int userId) {
+		return postDAO.selectPostCountByUserId(userId);
+	}
+	
 	// 게시글 삭제
 	public void deletePostByPostIdAndUserId(int postId, int userId) {
 		// 기존글 가져오기

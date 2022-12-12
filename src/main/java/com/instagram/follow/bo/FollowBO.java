@@ -1,9 +1,12 @@
 package com.instagram.follow.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.instagram.follow.dao.FollowDAO;
+import com.instagram.follow.model.Follow;
 
 @Service
 public class FollowBO {
@@ -28,8 +31,23 @@ public class FollowBO {
 		return followDAO.checkFollow(followerId, followeeId);
 	}
 	
-	// 팔로우가 개수 확인
+	// 팔로워 개수
 	public int getFollowCountByFollowerIdAndFolloweeId(int followerId, int followeeId) {
 		return followDAO.selectFollowCountByFollowerIdAndFolloweeId(followerId, followeeId);
+	}
+	
+	// 팔로워(팔로우한 대상) 개수
+	public int getFollowCountByFollowerId(int followerId) {
+		return followDAO.selectFollowCountByFollowerId(followerId);
+	}
+
+	// 팔로잉(팔로우한 대상) 개수
+	public int getFollowCountByFolloweeId(int followeeId) {
+		return followDAO.selectFollowCountByFolloweeId(followeeId);
+	}
+	
+	// 팔로워 유저 정보
+	public List<Follow> getFollowListByFolloweeId(int followeeId) {
+		return followDAO.selectFollowListByFolloweeId(followeeId);
 	}
 }

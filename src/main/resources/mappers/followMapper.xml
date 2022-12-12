@@ -45,4 +45,36 @@
 			`followerId` = #{followerId}
 			AND `followeeId` = #{followeeId}
 	</select>
+	
+	<select id="selectFollowCountByFollowerId" parameterType="map" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			`follow`
+		WHERE
+			`followerId` = #{followerId}
+	</select>
+	
+	<select id="selectFollowCountByFolloweeId" parameterType="map" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			`follow`
+		WHERE
+			`followeeId` = #{followeeId}
+	</select>
+	
+	<select id="selectFollowListByFolloweeId" parameterType="map"
+		 resultType="com.instagram.follow.model.Follow">
+		SELECT
+			`id`
+			,`followerId`
+			,`followeeId`
+			,`createdAt`
+		FROM
+			`follow`
+		WHERE
+			`followeeId` = #{followeeId}
+		ORDER BY `id` DESC
+	</select>
 </mapper>

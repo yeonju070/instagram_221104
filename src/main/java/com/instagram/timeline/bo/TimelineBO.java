@@ -58,7 +58,7 @@ public class TimelineBO {
 			
 			// 좋아요 개수
 			card.setLikeCount(likeBO.getLikeCountByPostIdOrUserId(post.getId(), null));
-
+			
 			// 게시글 하나의 댓글 목록
 			List<CommentView> commentList = commentBO.generateCommentViewListByPostId(post.getId());
 			card.setCommentList(commentList);

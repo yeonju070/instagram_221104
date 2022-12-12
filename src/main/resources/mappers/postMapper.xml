@@ -84,6 +84,15 @@
 			`id` = #{postId}
 	</update>
 	
+	<select id="selectPostCountByUserId" parameterType="map" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			`post`
+		WHERE
+			`userId` = #{userId}
+	</select>
+	
 	<delete id="deletePostByPostIdAndUserId" parameterType="map">
 		DELETE
 		FROM
