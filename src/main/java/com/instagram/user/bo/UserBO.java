@@ -224,7 +224,7 @@ public class UserBO {
 		for (int i = 0; i < followerList.size(); i++) {
 			int followerId = followerList.get(i).getFollowerId();	// 나를 팔로우 한 유저 pk
 			if (followBO.checkFollow(followerId, followerList.get(i).getId()) == true) {
-				followerUserList.add(getUserById(i));
+				followerList.get(i);
 			} else {
 				followerList.remove(i);
 			}
@@ -247,8 +247,7 @@ public class UserBO {
 		// 내가 팔로우 한 유저 리스트 출력
 		List<User> followeeUserList = new ArrayList<>();
 		for (int i = 0; i < followeeList.size(); i++) {
-			int followeeId = followeeList.get(i).getFolloweeId();	// 내가 팔로우 한 유저 pk
-			if (followBO.checkFollow(followeeId, followeeList.get(i).getId()) == true) {
+			if (followBO.checkFollow(userId, followeeList.get(i).getId()) == true) {
 				followeeUserList.add(getUserById(i));
 			} else {
 				followeeList.remove(i);
