@@ -75,26 +75,26 @@
 					<%-- 댓글 내용 --%>
 					<div class="card-comment-list">
 						<%-- 댓글 목록 --%>
-						<c:forEach items="${card.commentList}" var="commentView">
 						<div class="card-comment my-2 ml-3">
+							<%-- 댓글이 없으면 댓글없음 출력 --%>
+							<c:if test="${empty card.commentList}">
+								<span class="font-weight-bold">댓글없음</span>
+							</c:if>
+							<c:forEach items="${card.commentList}" var="commentView">
 							<%-- 댓글이 존재하면 해당 댓글 출력 --%>
 							<c:if test="${not empty commentView}">
 								<span class="font-weight-bold">${commentView.user.loginId}:</span>
 								<span>${commentView.comment.content}</span>
-							</c:if>
-							<%-- 댓글이 없으면 댓글없음 출력 --%>
-							<c:if test="${empty commentView.comment.content}">
-								<span class="font-weight-bold">댓글없음</span>
-							</c:if>
 							
-							<%-- 댓글 삭제 버튼 --%>
-							<c:if test="${not empty userLoginId}">
-							<a href="#" class="comment-delBtn" data-comment-id="${commentView.comment.id}">
-								<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
-							</a>
+								<%-- 댓글 삭제 버튼 --%>
+								<c:if test="${not empty userLoginId}">
+								<a href="#" class="comment-delBtn" data-comment-id="${commentView.comment.id}">
+									<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
+								</a>
+								</c:if>
 							</c:if>
+							</c:forEach>
 						</div>
-						</c:forEach>
 						<%-- 댓글 쓰기 --%>
 						<div class="comment-write d-flex border-top mt-3">
 							<input type="text" class="form-control border-0" placeholder="댓글 달기"/> 

@@ -208,20 +208,53 @@ public class UserBO {
 		return userRecommentList;
 	}
 	
-	// 나를 팔로우한 유저 리스트
-	public List<User> getFolloweeUserList(int userId) {
+	// 나를 팔로우(follower)한 유저 리스트
+	public List<User> getFollowerUserList(int userId) {
 		
 		// 유저 리스트
-		List<Follow> followList = followBO.getFollowListByFolloweeId(userId);
+		List<Follow> followerList = followBO.getFollowListByFollowerId(userId);
 		
 		// 유저 리스트가 비어있을 경우
-		if (ObjectUtils.isEmpty(followList)) {
+		if (ObjectUtils.isEmpty(followerList)) {
 			return new ArrayList<>();
 		}
 		
 		// 나를 팔로우 한 유저만 리스트에 출력
-		for (int i = 0; i < followList.size(); i++) {
-			int userList = followList.get(i).getFollowerId();
+		List<User> followerUserList = new ArrayList<>();
+		for (int i = 0; i < followerList.size(); i++) {
+			int followerId = followerList.get(i).getFollowerId();	// 나를 팔로우 한 유저 pk
+			if (followBO.checkFollow(followerId, followerList.get(i).getId()) == true) {
+				followerUserList.add(getUserById(i));
+			} else {
+				followerList.remove(i);
+			}
 		}
+		
+		return followerUserList;
+	}
+	
+	// 내가 팔로우(followee)한 유저 리스트
+	public List<User> getFolloweeUserList(int userId) {
+		
+		// 유저 리스트
+		List<Follow> followeeList = followBO.getFollowListByFolloweeId(userId);
+		
+		// 유저 리스트가 비어있을 경우
+		if (ObjectUtils.isEmpty(followeeList)) {
+			return new ArrayList<>();
+		}
+		
+		// 내가 팔로우 한 유저 리스트 출력
+		List<User> followeeUserList = new ArrayList<>();
+		for (int i = 0; i < followeeList.size(); i++) {
+			int followeeId = followeeList.get(i).getFolloweeId();	// 내가 팔로우 한 유저 pk
+			if (followBO.checkFollow(followeeId, followeeList.get(i).getId()) == true) {
+				followeeUserList.add(getUserById(i));
+			} else {
+				followeeList.remove(i);
+			}
+		}
+		
+		return followeeUserList;
 	}
 }

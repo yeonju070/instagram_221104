@@ -30,12 +30,15 @@ public interface FollowDAO {
 			@Param("followerId") int followerId, 
 			@Param("followeeId") int followeeId);
 	
-	// 팔로워
+	// 팔로워(팔로우한 대상)
+	public List<Follow> selectFollowListByFollowerId(int followerId);
+
+	// 팔로우(팔로우 당한 대상)
 	public List<Follow> selectFollowListByFolloweeId(int followeeId);
 	
-	// 팔로워(팔로우할 대상) 개수
+	// 팔로워(팔로우한 대상) 개수
 	public int selectFollowCountByFollowerId(int followerId);
 
-	// 팔로잉(팔로우한 대상) 개수
+	// 팔로잉(팔로우 당한 대상) 개수
 	public int selectFollowCountByFolloweeId(int followeeId);
 }

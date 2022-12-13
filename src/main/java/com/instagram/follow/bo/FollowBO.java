@@ -31,7 +31,7 @@ public class FollowBO {
 		return followDAO.checkFollow(followerId, followeeId);
 	}
 	
-	// 팔로워 개수
+	// 전체 팔로워 개수
 	public int getFollowCountByFollowerIdAndFolloweeId(int followerId, int followeeId) {
 		return followDAO.selectFollowCountByFollowerIdAndFolloweeId(followerId, followeeId);
 	}
@@ -41,12 +41,17 @@ public class FollowBO {
 		return followDAO.selectFollowCountByFollowerId(followerId);
 	}
 
-	// 팔로잉(팔로우한 대상) 개수
+	// 팔로잉(팔로우 당한 대상) 개수
 	public int getFollowCountByFolloweeId(int followeeId) {
 		return followDAO.selectFollowCountByFolloweeId(followeeId);
 	}
 	
-	// 팔로워 유저 정보
+	// 팔로워(팔로우한 대상) 유저 정보
+	public List<Follow> getFollowListByFollowerId(int followerId) {
+		return followDAO.selectFollowListByFolloweeId(followerId);
+	}
+	
+	// 팔로우(팔로우 당한 대상) 유저 정보
 	public List<Follow> getFollowListByFolloweeId(int followeeId) {
 		return followDAO.selectFollowListByFolloweeId(followeeId);
 	}

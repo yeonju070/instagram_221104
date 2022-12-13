@@ -64,6 +64,22 @@
 			`followeeId` = #{followeeId}
 	</select>
 	
+	<!-- 팔로우한 대상 -->
+	<select id="selectFollowListByFollowerId" parameterType="map"
+		 resultType="com.instagram.follow.model.Follow">
+		SELECT
+			`id`
+			,`followerId`
+			,`followeeId`
+			,`createdAt`
+		FROM
+			`follow`
+		WHERE
+			`followerId` = #{followerId}
+		ORDER BY `id` DESC
+	</select>
+	
+	<!-- 팔로우 당한 대상 -->
 	<select id="selectFollowListByFolloweeId" parameterType="map"
 		 resultType="com.instagram.follow.model.Follow">
 		SELECT

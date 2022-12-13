@@ -75,30 +75,30 @@
 	<div class="modal-dialog modal-dialog-centered modal-sm">
 		<div class="modal-content">
       		<%-- Modal 창 안에 내용 채워넣기 --%>
-      		<div class="text-center">
-      			<div class="my-4">
-     				<h5>팔로워</h5>
-      			</div>
-      			<div class="border-top border-bottom">
-      				<c:if test="${empty followerList}">
-						유저가 없습니다.
-					</c:if>
-					<c:if test="${not empty followerList}">
-					<c:forEach items="${followerList}" var="followerList">
-					<div class="another-user m-3 d-flex align-items-center">
-						<a href="#" class="user-directly-click d-flex align-items-center">
-							<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="30px" alt="기본 유저사진">
-							<span class="ml-4 text-dark">${followerList.loginId}</span>
-						</a>
-					</div>
-					</c:forEach>	<%-- 유저 추천 리스트 닫기 --%>
-					</c:if>
-      			</div>
-      			<div class="my-3">
-      				<%-- data-dismiss="modal" 모달창 닫힘 --%>
-      				<a href="#" data-dismiss="modal">취소</a>
-      			</div>
-      		</div>
+			<div class="m-3 d-flex">
+				<span class="follow-title-box font-weight-bold text-center">팔로워</span>
+				<div class="follow-box-cancell align-items-center">
+	   				<%-- data-dismiss="modal" 모달창 닫힘 --%>
+	   				<a href="#" data-dismiss="modal">
+	   					<img src="https://cdn.icon-icons.com/icons2/904/PNG/512/cancel-1_icon-icons.com_69681.png" alt="취소 아이콘" width="10px">
+	   				</a>
+	   			</div>
+ 			</div>
+   			<div class="border-top">
+  				<c:if test="${empty followerList}">
+					<span class="m-3">팔로워가 없습니다.</span>
+				</c:if>
+				<c:if test="${not empty followerList}">
+				<c:forEach items="${followerList}" var="followerList">
+				<div class="another-user m-3 d-flex align-items-center">
+					<a href="#" class="user-directly-click d-flex align-items-center">
+						<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="30px" alt="기본 유저사진">
+						<span class="ml-4 text-dark">${followerList.loginId}</span>
+					</a>
+				</div>
+				</c:forEach>	<%-- 유저 추천 리스트 닫기 --%>
+				</c:if>
+   			</div>
 		</div>
 	</div>
 </div>
@@ -109,30 +109,30 @@
 	<div class="modal-dialog modal-dialog-centered modal-sm">
 		<div class="modal-content">
       		<%-- Modal 창 안에 내용 채워넣기 --%>
-      		<div class="text-center">
-      			<div class="my-4">
-     				<h5>팔로우</h5>
-      			</div>
-      			<div class="border-top border-bottom">
-      				<c:if test="${empty followerList}">
-						유저가 없습니다.
-					</c:if>
-					<c:if test="${not empty followerList}">
-					<c:forEach items="${followerList}" var="followerList">
-					<div class="another-user m-3 d-flex align-items-center">
-						<a href="#" class="user-directly-click d-flex align-items-center">
-							<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="30px" alt="기본 유저사진">
-							<span class="ml-4 text-dark">${followerList.loginId}</span>
-						</a>
-					</div>
-					</c:forEach>	<%-- 유저 추천 리스트 닫기 --%>
-					</c:if>
-      			</div>
-      			<div class="my-3">
-      				<%-- data-dismiss="modal" 모달창 닫힘 --%>
-      				<a href="#" data-dismiss="modal">취소</a>
-      			</div>
-      		</div>
+			<div class="m-3 d-flex">
+				<span class="follow-title-box font-weight-bold text-center">팔로우</span>
+				<div class="follow-box-cancell align-items-center">
+	   				<%-- data-dismiss="modal" 모달창 닫힘 --%>
+	   				<a href="#" data-dismiss="modal">
+	   					<img src="https://cdn.icon-icons.com/icons2/904/PNG/512/cancel-1_icon-icons.com_69681.png" alt="취소 아이콘" width="10px">
+	   				</a>
+	   			</div>
+ 			</div>
+   			<div class="border-top">
+  				<c:if test="${empty followeeList}">
+					<span class="m-3">팔로우가 없습니다.</span>
+				</c:if>
+				<c:if test="${not empty followeeList}">
+				<c:forEach items="${followeeList}" var="followerList">
+				<div class="another-user m-3 d-flex align-items-center">
+					<a href="#" class="user-directly-click d-flex align-items-center">
+						<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAyMjBfMjY4%2FMDAxNjQ1Mjk5Nzc2Mjg2.pzyiS5-tXZYmGvpnR1xGOyaO7lfd2M1vCO-qDlxowbQg.wzX3zzmvL_-4PxIED5x46fd3-COb7cU0oTM6c3KL3O0g.JPEG.zxc7421%2F44884218_345707102882519_2446069589734326272_n.jpg&type=sc960_832" width="30px" alt="기본 유저사진">
+						<span class="ml-4 text-dark">${followeeList.loginId}</span>
+					</a>
+				</div>
+				</c:forEach>	<%-- 유저 추천 리스트 닫기 --%>
+				</c:if>
+   			</div>
 		</div>
 	</div>
 </div>

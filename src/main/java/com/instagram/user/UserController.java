@@ -82,9 +82,13 @@ public class UserController {
 		// 팔로워 개수 화면에 뿌리기
 		int followeeCount = followBO.getFollowCountByFolloweeId(userId);
 		
-		// 팔로우한 userList(전체) 타임라인에 뿌리기
-		List<User> followerList = userBO.getFollowUserList(userId, null);
+		//  팔로워(팔로우한 대상) 유저 정보 화면에 뿌리기
+		List<User> followerList = userBO.getFollowerUserList(userId);
+
+		//  팔로우(팔로우 당한 대상) 유저 정보 화면에 뿌리기
+		List<User> followeeList = userBO.getFollowerUserList(userId);
 		
+		model.addAttribute("followeeList", followeeList);
 		model.addAttribute("followerList", followerList);
 		model.addAttribute("followerCount", followerCount);
 		model.addAttribute("followeeCount", followeeCount);
