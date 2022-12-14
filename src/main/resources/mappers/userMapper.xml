@@ -104,6 +104,28 @@
 			`id` = #{id}
 	</update>
 	
+	<select id="selectUserProfileImagePathByUserId" parameterType="map"
+		resultType="com.instagram.user.model.User">
+		SELECT
+			`id`
+			,`loginId`
+			,`password`
+			,`phoneNumber`
+			,`imagePath`
+			,`name`
+			,`email`
+			,`introduce`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`user`
+		WHERE
+			`id` = #{id}
+			<if test="imagePath != null">
+			AND `imagePath` = #{imagePath}
+			</if>
+	</select>
+	
 	<select id="selectUserListByUserId" parameterType="map"
 			resultType="com.instagram.user.model.User">
 		SELECT

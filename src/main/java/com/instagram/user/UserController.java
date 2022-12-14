@@ -86,7 +86,7 @@ public class UserController {
 		List<User> followerList = userBO.getFollowerUserList(userId);
 
 		//  팔로우(팔로우 당한 대상) 유저 정보 화면에 뿌리기
-		List<User> followeeList = userBO.getFollowerUserList(userId);
+		List<User> followeeList = userBO.getFolloweeUserList(userId);
 		
 		model.addAttribute("followeeList", followeeList);
 		model.addAttribute("followerList", followerList);

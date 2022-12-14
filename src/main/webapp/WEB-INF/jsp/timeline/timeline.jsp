@@ -123,7 +123,7 @@
 							<div class="timeline-profile-imagePath">
 								<img src="${userInfo.imagePath}" class="my-profile-imagePath" width="45px" alt="기본 유저사진">
 							</div>
-							</c:if>
+						</c:if>
 						<div class="ml-3 font-weight-bold">${userInfo.loginId}</div>
 					</c:forEach>
 				</a>

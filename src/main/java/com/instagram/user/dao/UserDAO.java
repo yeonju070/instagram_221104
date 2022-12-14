@@ -31,8 +31,13 @@ public interface UserDAO {
 	// 유저 추천 리스트
 	public List<User> selectRecommentUserList();
 	
-	// 유저 프로필 사진 업로드
+	// 유저(나) 프로필 사진 업로드
 	public int updateUserProfileImagePathByUserId(
+			@Param("id") int id,
+			@Param("imagePath") String imagePath);
+	
+	// 유저 프로필 사진 가져오기
+	public List<User> selectUserProfileImagePathByUserId(
 			@Param("id") int id,
 			@Param("imagePath") String imagePath);
 	

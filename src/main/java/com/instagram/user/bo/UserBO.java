@@ -131,6 +131,11 @@ public class UserBO {
 		return userDAO.updateUserProfileImagePathByUserId(userId, imagePath);
 	}
 	
+	// 유저 프로필 사진 가져오기
+	public List<User> getUserProfileImagePathByUserId(int userId, String imagePath) {
+		return userDAO.selectUserProfileImagePathByUserId(userId, imagePath);
+	}
+	
 	// profileDetail에 뿌릴 유저 정보
 	public List<User> getUserListByUserId(int userId) {
 		return userDAO.selectUserListByUserId(userId);
@@ -222,12 +227,8 @@ public class UserBO {
 		// 나를 팔로우 한 유저만 리스트에 출력
 		List<User> followerUserList = new ArrayList<>();
 		for (int i = 0; i < followerList.size(); i++) {
-			int followerId = followerList.get(i).getFollowerId();	// 나를 팔로우 한 유저 pk
-			if (followBO.checkFollow(followerId, followerList.get(i).getId()) == true) {
-				followerList.get(i);
-			} else {
-				followerList.remove(i);
-			}
+			User user = getUserById(followerList.get(i).getId());
+			followerUserList.add(user);
 		}
 		
 		return followerUserList;
@@ -237,23 +238,29 @@ public class UserBO {
 	public List<User> getFolloweeUserList(int userId) {
 		
 		// 유저 리스트
-		List<Follow> followeeList = followBO.getFollowListByFolloweeId(userId);
+		List<User> userList = userDAO.selectRecommentUserList();
 		
 		// 유저 리스트가 비어있을 경우
-		if (ObjectUtils.isEmpty(followeeList)) {
+		if (ObjectUtils.isEmpty(userList)) {
 			return new ArrayList<>();
 		}
 		
-		// 내가 팔로우 한 유저 리스트 출력
-		List<User> followeeUserList = new ArrayList<>();
-		for (int i = 0; i < followeeList.size(); i++) {
-			if (followBO.checkFollow(userId, followeeList.get(i).getId()) == true) {
-				followeeUserList.add(getUserById(i));
-			} else {
-				followeeList.remove(i);
+		// 나 자신은 리스트에서 제거
+		for (int i = 0; i < userList.size(); i++) {
+			if (userList.get(i).getId() == userId) {
+				userList.remove(i);
 			}
 		}
 		
-		return followeeUserList;
+		// 팔로우 한 유저만 리스트에 출력
+		for (int i = 0; i < userList.size(); i++) {
+			if (followBO.checkFollow(userId, userList.get(i).getId()) == true) {
+				userList.get(i);
+			} else {
+				userList.remove(i);
+			}
+		}
+			
+		return userList;
 	}
 }
