@@ -48,7 +48,7 @@
 						<img src="${card.post.imagePath}" class="w-100" alt="본문 이미지">
 					</div>
 					
-					<%-- 좋아요, 댓글 --%>
+					<%-- 좋아요 --%>
 					<div class="card-like ml-3 mt-2">
 						<a href="#" class="like-btn" data-user-id="${userId}" data-post-id="${card.post.id}">
 							<c:if test="${card.filledLike eq false}">
@@ -67,7 +67,7 @@
 						<span>${card.post.content}</span>
 					</div>
 					
-					<%-- 댓글 --%>
+					<%-- 댓글 개수 --%>
 					<div class="card-comment-desc border-bottom">
 						<div class="ml-3 mb-2 font-weight-bold">댓글 ${card.commentCount}</div>
 					</div>
