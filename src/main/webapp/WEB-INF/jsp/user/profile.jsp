@@ -220,9 +220,9 @@ $(document).ready(function() {
 		
 		let postId = $('#post-modal').data('post-id');
 		
-		// ajax 글삭제
+		// ajax 게시글 삭제
 		$.ajax({
-			type:"put"
+			type:"delete"
 			, url:"/post/delete"
 			, data: {"postId":postId}
 			, success: function(data) {
