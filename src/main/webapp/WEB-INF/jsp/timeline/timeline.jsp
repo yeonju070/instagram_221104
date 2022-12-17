@@ -135,8 +135,8 @@
 			
 			<%-- 다른 사람 프로필 --%>
 			<c:if test="${empty userList}">
-					<div></div>
-				</c:if>
+				<div></div>
+			</c:if>
 			<c:forEach items="${userList}" var="user">
 			<div class="another-user mt-3 d-flex align-items-center justify-content-between">
 				<a href="/user/profile_view">
