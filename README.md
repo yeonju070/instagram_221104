@@ -77,7 +77,7 @@ random을 생성하여 주고 반복문으로 돌려주었다. int형에 랜덤 
 
 이 후 섞인 유저들을 4명만 출력하기를 원하였고 섞은 이후의 예외 처리를 해주었다. 일단 4명의 유저가 담겨있는지 확인해야해서 반복문을 돌려 랜덤으로 섞인 유저가 담긴 userListd의 size(index의 크기)가 4보다 작으면 그냥 return 해주었다. 위 반복문이 참이라면 밑으로 내려와 유저를 추천하는 유저가 담긴 리스트를 새로 만들어서 반복문을 돌려주었다. 4명의 유저만 추천할 것이기 때문에 i가 4 이하일때만 반복문이 돌도록 설정하여주었고 유저추천리스트를 담을 객체에 userList의 i번째 정보를 담아주고 그대로 리턴시켜 정보를 넘겨주었다.<br>
 
-List<User> userRecommentList = new ArrayList<>();
+	List<User> userRecommentList = new ArrayList<>();
 		for (int i = 0; i < 4; i++) {
 			userRecommentList.add(userList.get(i));
 		}
