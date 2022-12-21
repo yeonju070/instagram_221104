@@ -7,8 +7,7 @@
 개인프로젝트가 시작되고 제가 할 수 있는 걸 최대한 이용해보기로 생각했습니다. 내가 어떤 것을 할 수 있는지 고민하며 어려운 기술들을 넣어 완성되지 못한 어설픈 결과물을 만드느니 완성도에 집중하려고 했고 일전에 sns를 조금 해본 경험을 토대로 표면적인 것들만 만들었던 sns에서 아쉬웠던 부분들을 조금더 세세히 보안하여 완성된 sns를 만들고 싶어서 이 프로젝트를 시작하게 되었습니다.
 
 
-## 개요
-### 프로젝트 일정
+##  프로젝트 일정
 [개인프로젝트 기획서](https://ovenapp.io/view/a518sWUffUJ0LFCA5UFwKcKceCKJarWT#TUUFX) 작성 및 [일정표(wds)](https://docs.google.com/spreadsheets/d/1nWCcQ2uxeilCxMUCkrlJpY8r_5RhIo2I9wTOAgLvmPc/edit#gid=0)-> [DB설계](https://docs.google.com/spreadsheets/d/1TFikyslZJnriAMZxrpbF8gzqchIujMSILeB3M4-SN40/edit#gid=0) -> [API 및 URL 설계](https://docs.google.com/spreadsheets/d/1LaX4n7nSAR0B9mIBwdZJ_XEVHodPvFcjNHNYxWxjDJU/edit#gid=0) -> 마크업 및 기능 구현 -> 테스트 -> 완료
 
 **개발 기간**<br>
