@@ -195,8 +195,8 @@ public class UserBO {
 		for (int i = 0; i < 50; i++) {
 			int rndIndex = rnd.nextInt(userList.size());
 			User tempUser = userList.get(0);
-			userList.set(0, userList.get(rndIndex));	// 0번째 index에 랜덤 index입력
-			userList.set(rndIndex, tempUser);			// 랜덤으로 섞인 index에 tempUser를 넣는다.
+			userList.set(0, userList.get(rndIndex));		// 0번째 index에 랜덤 index입력
+			userList.set(rndIndex, tempUser);				// 랜덤으로 섞인 index에 tempUser를 넣는다.
 		}
 		
 		// 유저가 4명이상 리스트에 담겨있는지 체크

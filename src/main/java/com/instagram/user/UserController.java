@@ -110,14 +110,10 @@ public class UserController {
 			return "redirect:/user/sign_in_view";
 		}
 		
-		// cardView 화면에 뿌리기
-		List<CardView> cardViewList = timelineBO.generateCardList(userId, null);
-		
 		// userList 화면에 뿌리기
 		List<User> userList = userBO.getUserListByUserId(userId);
 		
 		model.addAttribute("userList", userList);
-		model.addAttribute("cardList", cardViewList);
 		model.addAttribute("viewName", "user/profileDetail");
 		return "template/layout";
 	}
