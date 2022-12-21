@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.instagram.post.bo.PostBO;
 import com.instagram.post.model.Post;
+import com.instagram.user.bo.UserBO;
+import com.instagram.user.model.User;
 
 @RequestMapping("/post")
 @Controller
@@ -19,6 +21,9 @@ public class PostController {
 	
 	@Autowired
 	private PostBO postBO;
+	
+	@Autowired
+	private UserBO userBO;
 
 	@RequestMapping("/post_create_view")
 	public String postCreateView(
@@ -30,6 +35,10 @@ public class PostController {
 			return "redirect:/user/sign_in_view";
 		}
 		
+		// userInfoList(유저 하나의 정보) 타임라인에 뿌리기
+		List<User> userInfoList = userBO.getUserListByUserId(userId);
+		
+		model.addAttribute("userInfo", userInfoList);
 		model.addAttribute("viewName", "post/postCreate");
 		return "template/layout";
 	}
@@ -48,6 +57,10 @@ public class PostController {
 		// postList 타임라인에 뿌리기
 		List<Post> postList = postBO.getPostListByPostIdAndUserId(postId, userId);
 		
+		// userInfoList(유저 하나의 정보) 타임라인에 뿌리기
+		List<User> userInfoList = userBO.getUserListByUserId(userId);
+		
+		model.addAttribute("userInfo", userInfoList);
 		model.addAttribute("postList", postList);
 		model.addAttribute("viewName", "post/postDetail");
 		return "template/layout";

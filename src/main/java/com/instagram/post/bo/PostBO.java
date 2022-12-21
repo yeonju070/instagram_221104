@@ -70,7 +70,7 @@ public class PostBO {
 		
 		String imagePath = null;
 		
-		if(file != null) {
+		if (file != null) {
 			// 업로드
 			imagePath = fileManager.saveFile(userLoginId, file);
 			
